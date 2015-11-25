@@ -1,0 +1,14 @@
+{% extends '::layout.html.twig' %}
+
+{% block title -%} Abteilung creation {% endblock %}
+{% block content -%}
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a class="btn btn-default" href="{{ path('abteilung') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

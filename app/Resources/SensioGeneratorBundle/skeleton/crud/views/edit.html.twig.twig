@@ -1,0 +1,14 @@
+{% block extends %}
+{{ "{% extends '::layout.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+{{ "{% block title -%}" }} {{ entity }} edit {{ "{% endblock %}" }}
+{{ "{% block content -%}" }}
+
+    {{ '{{ form(edit_form) }}' }}
+
+    {% set hide_edit, hide_delete = true, false %}
+    {% include 'crud/views/others/record_actions.html.twig.twig' %}
+{{ "{% endblock %}" }}
+{% endblock body %}

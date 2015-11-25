@@ -1,0 +1,39 @@
+{% extends '::layout.html.twig' %}
+
+{% block title -%} Maschine {% endblock %}
+{% block content -%}
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+            <tr>
+                <th>Seriennummer</th>
+                <td>{{ entity.seriennummer }}</td>
+            </tr>
+            <tr>
+                <th>Zustand</th>
+                <td>{{ entity.zustand }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a class="btn btn-default" href="{{ path('maschine') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a class="btn btn-default" href="{{ path('maschine_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

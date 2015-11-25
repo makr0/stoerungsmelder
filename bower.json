@@ -1,0 +1,9 @@
+{
+    "name": "stoerungsmelder",
+    "authors": [
+        "makr0"
+    ],
+    "dependencies": {
+        "startbootstrap-sb-admin-2": "~1.0.7"
+    }
+}

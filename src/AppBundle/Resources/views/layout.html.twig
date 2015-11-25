@@ -1,0 +1,27 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        {{ include("AppBundle::navigations.html.twig") }}
+        <div id="page-wrapper">
+            {% block top_row %}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="page-header">
+                            {% block title %}
+                            {% endblock %}
+                        </h1>
+                    </div>
+                </div>
+            {% endblock %}
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    {% stylesheets '@AppBundle/Resources/css/application.css' filter='cssrewrite' %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}

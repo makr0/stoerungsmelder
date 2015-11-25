@@ -1,0 +1,43 @@
+{% extends '::layout.html.twig' %}
+
+{% block title -%} Stoerung {% endblock %}
+{% block content -%}
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+            <tr>
+                <th>Ststart</th>
+                <td>{{ entity.stStart|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Stend</th>
+                <td>{{ entity.stEnd|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Bemerkungen</th>
+                <td>{{ entity.bemerkungen }}</td>
+            </tr>
+            <tr>
+                <th>Massnahmen</th>
+                <td>{{ entity.massnahmen }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a class="btn btn-default" href="{{ path('stoerung') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a class="btn btn-default" href="{{ path('stoerung_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

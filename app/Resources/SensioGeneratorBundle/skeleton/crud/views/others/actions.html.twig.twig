@@ -1,0 +1,12 @@
+
+                <ul class="record_actions">
+
+                {%- for action in record_actions %}
+
+                    <li>
+                        <a class="btn btn-default"  href="{{ "{{ path('" ~ route_name_prefix ~ "_" ~ action ~ "', { 'id': entity."~ identifier ~" }) }}" }}">{{ action }}</a>
+                    </li>
+
+                {%- endfor %}
+
+                </ul>
