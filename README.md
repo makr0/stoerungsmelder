@@ -1,72 +1,57 @@
-Symfony Standard Edition
-========================
+# Der Störungsmelder
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony2
-application that you can use as the skeleton for your new applications.
+Das Ganze Ding hier basiert auf [Symfony][1].
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
 
-What's inside?
---------------
+## Installation unter Windows
+### Voraussetzungen
 
-The Symfony Standard Edition is configured with the following defaults:
+  * PHP für Windows (für die kommandozeile)
 
-  * An AppBundle you can use to start coding;
+  * XAMPP für Windows (für den Webserver)
 
-  * Twig as the only configured template engine;
+  * [Composer] [2] (für die Installation diverser Komponenten)
 
-  * Doctrine ORM/DBAL;
+### PHP installieren
+PHP nach c:\php5 installieren. Siehe [windows.php.net][3].
 
-  * Swiftmailer;
+### [XAMPP][4] Konfigurieren
 
-  * Annotations enabled for everything.
+  * in conf/extra/httpd-vhosts.conf folgendes eintragen
+```
+<VirtualHost *:80>
+       DocumentRoot "C:/xampp/htdocs/"
+       ServerName localhost
+</VirtualHost>
+<VirtualHost *:80>
+       ServerAlias *.localhost
+       VirtualDocumentRoot "C:/xampp/htdocs/%1/web"
+</VirtualHost>
+```
+  * Projekt nach C:/xampp/htdocs/stoerungsmelder.localhost kopieren oder auschecken
 
-It comes pre-configured with the following bundles:
+  * in diesem Verzeichnis: `composer install` ausführen. Kann länger dauern, der lädt das halbe Internet runter.
 
-  * **FrameworkBundle** - The core Symfony framework bundle
+  * Wenn composer fertig ist, fragt er nach dem Database Login.
 
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
+### Projekt initialisieren
 
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+  * `php app/console doctrine:database:create`
+  * `php app/console doctrine:schema:create`
 
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
+### fast fertig
 
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
+  * stoerungsmelder.localhost in hosts-Datei einfügen:
+```
+# xampp vhosts
+127.0.0.1 stoerungsmelder.localhost
+```
 
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
+  * http://stoerungsmelder.localhost im browser aufrufen
 
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
 
-  * [**AsseticBundle**][12] - Adds support for Assetic, an asset processing
-    library
 
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
-    capabilities
-
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  https://symfony.com/doc/2.7/book/installation.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/2.7/book/doctrine.html
-[8]:  https://symfony.com/doc/2.7/book/templating.html
-[9]:  https://symfony.com/doc/2.7/book/security.html
-[10]: https://symfony.com/doc/2.7/cookbook/email.html
-[11]: https://symfony.com/doc/2.7/cookbook/logging/monolog.html
-[12]: https://symfony.com/doc/2.7/cookbook/assetic/asset_management.html
-[13]: https://symfony.com/doc/2.7/bundles/SensioGeneratorBundle/index.html
+[1]:  https://symfony.com/doc/2.7/book/
+[2]:  https://getcomposer.org/Composer-Setup.exe
+[3]:  http://windows.php.net/download/
+[4]:  https://www.apachefriends.org/de/download.html
