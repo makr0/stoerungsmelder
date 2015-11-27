@@ -17,9 +17,10 @@ class StoerungType extends AbstractType
         $builder
             ->add('maschine')
             ->add('stStart')
+            ->add('behoben')
             ->add('stEnd')
-            ->add('bemerkungen')
-            ->add('massnahmen')
+            //->add('bemerkungen')
+            //->add('massnahmen')
             ->add('art','choice',array('choices'=>
                 array('S'=>'Störung','A'=>'Ausfall')
             ))

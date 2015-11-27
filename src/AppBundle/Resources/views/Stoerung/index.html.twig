@@ -8,6 +8,7 @@
                 <th>Id</th>
                 <th>Ststart</th>
                 <th>Stend</th>
+                <th>Behoben</th>
                 <th>Bemerkungen</th>
                 <th>Massnahmen</th>
                 <th>Art</th>
@@ -20,6 +21,7 @@
                 <td><a href="{{ path('stoerung_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{% if entity.stStart %}{{ entity.stStart|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if entity.stEnd %}{{ entity.stEnd|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.behoben }}</td>
                 <td>{{ entity.bemerkungen }}</td>
                 <td>{{ entity.massnahmen }}</td>
                 <td>{{ entity.art }}</td>
