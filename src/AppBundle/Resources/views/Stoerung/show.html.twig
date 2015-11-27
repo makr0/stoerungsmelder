@@ -24,20 +24,20 @@
                 <th>Massnahmen</th>
                 <td>{{ entity.massnahmen }}</td>
             </tr>
+            <tr>
+                <th>Art</th>
+                <td>{{ entity.art }}</td>
+            </tr>
         </tbody>
     </table>
 
-        <ul class="record_actions">
-    <li>
-        <a class="btn btn-default" href="{{ path('stoerung') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
+        <div class="btn-group" role="group">
+    <a class="btn btn-default" href="{{ path('stoerung') }}">
+        Back to the list
+    </a>
         <a class="btn btn-default" href="{{ path('stoerung_edit', { 'id': entity.id }) }}">
             Edit
         </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    {{ form(delete_form) }}
+</div>
 {% endblock %}

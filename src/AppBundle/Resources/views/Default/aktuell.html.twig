@@ -1,0 +1,40 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+	{% if not stoerungen %}
+		Alles OK
+	{% else %}
+		aktuelle Störungen
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+    <a class="btn btn-danger" href="{{ path('stoerung_neu') }}">
+        neue Störung
+    </a>
+	{% if stoerungen %}
+    <table class="table-striped table">
+        <thead>
+            <tr>
+                <th>seit</th>
+                <th>Abteilung</th>
+                <th>Maschine</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+		{% for stoerung in stoerungen %}
+			<tr>
+                <td>{{ stoerung.stStart|date("d.m. H:i")}}</td>
+                <td>{{ stoerung.maschine.abteilung }}</td>
+                <td>{{ stoerung.maschine }}</td>
+                <td>
+	                <a class="btn btn-default"  href="{{ path('stoerung_beenden', { 'id': stoerung.id }) }}">beenden</a>
+
+                </td>
+			</tr>
+		{% endfor %}
+        </tbody>
+	</table>
+	{% endif %}
+{% endblock %}

@@ -1,12 +1,20 @@
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="{{path('index') }}"><strong>Störungsmelder Backend</strong></a>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{path('index') }}"><strong>Störungsmelder Backend</strong></a>
+        </div>
+        <a href="{{path('aktuelle_stoerungen') }}"
+           class="btn btn-default navbar-btn">aktuelle Störungen</a>
+        <a class="btn btn-default navbar-btn" href="{{ path('index') }}">
+            Dashboard
+        </a>
+
     </div>
 
     <div class="navbar-default sidebar" role="navigation">

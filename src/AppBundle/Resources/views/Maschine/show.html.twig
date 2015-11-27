@@ -16,24 +16,16 @@
                 <th>Seriennummer</th>
                 <td>{{ entity.seriennummer }}</td>
             </tr>
-            <tr>
-                <th>Zustand</th>
-                <td>{{ entity.zustand }}</td>
-            </tr>
         </tbody>
     </table>
 
-        <ul class="record_actions">
-    <li>
-        <a class="btn btn-default" href="{{ path('maschine') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
+        <div class="btn-group" role="group">
+    <a class="btn btn-default" href="{{ path('maschine') }}">
+        Back to the list
+    </a>
         <a class="btn btn-default" href="{{ path('maschine_edit', { 'id': entity.id }) }}">
             Edit
         </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    {{ form(delete_form) }}
+</div>
 {% endblock %}

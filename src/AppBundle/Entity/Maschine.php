@@ -43,13 +43,6 @@ class Maschine
     private $seriennummer;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="zustand", type="string", length=5)
-     */
-    private $zustand;
-
-    /**
      * @ORM\OneToMany(targetEntity="Stoerung", mappedBy="maschine")
      */
     private $stoerungen;

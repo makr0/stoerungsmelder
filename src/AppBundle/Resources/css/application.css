@@ -6,3 +6,9 @@ ul.record_actions  li {
 	float: left;
 	margin-right: 10px;
 }
+a.unlink {
+  color: inherit;
+}
+a.unlink:hover {
+  color: inherit;
+}

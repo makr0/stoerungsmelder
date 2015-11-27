@@ -18,9 +18,6 @@ class MaschineType extends AbstractType
             ->add('name')
             ->add('abteilung')
             ->add('seriennummer')
-            ->add('zustand','choice',array('choices'=>
-                array('L'=>'läuft','S'=>'Störung','A'=>'Ausfall')
-                ))
         ;
     }
 

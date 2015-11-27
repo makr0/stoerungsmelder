@@ -20,6 +20,9 @@ class StoerungType extends AbstractType
             ->add('stEnd')
             ->add('bemerkungen')
             ->add('massnahmen')
+            ->add('art','choice',array('choices'=>
+                array('S'=>'Störung','A'=>'Ausfall')
+            ))
         ;
     }
 

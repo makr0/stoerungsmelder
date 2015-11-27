@@ -43,12 +43,18 @@ class Stoerung
     private $stEnd;
 
     /**
+     * @var \Boolean
+     *
+     * @ORM\Column(name="behoben", type="boolean")
+     */
+    private $behoben;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="bemerkungen", type="text")
      */
     private $bemerkungen;
-
 
     /**
      * @var string
@@ -56,6 +62,13 @@ class Stoerung
      * @ORM\Column(name="massnahmen", type="text")
      */
     private $massnahmen;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="art", type="string", length=5)
+     */
+    private $art;
 
 
     /**
@@ -188,5 +201,53 @@ class Stoerung
     public function getMaschine()
     {
         return $this->maschine;
+    }
+
+    /**
+     * Set art
+     *
+     * @param string $art
+     *
+     * @return Stoerung
+     */
+    public function setArt($art)
+    {
+        $this->art = $art;
+
+        return $this;
+    }
+
+    /**
+     * Get art
+     *
+     * @return string
+     */
+    public function getArt()
+    {
+        return $this->art;
+    }
+
+    /**
+     * Set behoben
+     *
+     * @param boolean $behoben
+     *
+     * @return Stoerung
+     */
+    public function setBehoben($behoben)
+    {
+        $this->behoben = $behoben;
+
+        return $this;
+    }
+
+    /**
+     * Get behoben
+     *
+     * @return boolean
+     */
+    public function getBehoben()
+    {
+        return $this->behoben;
     }
 }

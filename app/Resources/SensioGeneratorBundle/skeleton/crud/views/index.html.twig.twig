@@ -51,13 +51,9 @@
     </table>
 
     {% if 'new' in actions %}
-    <ul>
-        <li>
-            <a class="btn btn-default" href="{{ "{{ path('" ~ route_name_prefix ~ "_new') }}" }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+    <a class="btn btn-default" href="{{ "{{ path('" ~ route_name_prefix ~ "_new') }}" }}">
+        Create a new entry
+    </a>
     {% endif %}
 {{ "{% endblock %}" }}
 {% endblock body %}
