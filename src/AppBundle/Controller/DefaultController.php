@@ -48,6 +48,17 @@ class DefaultController extends Controller
         );
     }
     /**
+     * @Route("/laufende_maschinen", name="laufende_maschinen")
+     * @Template()
+     */
+    public function laufendeMaschinenAction()
+    {
+        return array(
+                // ...
+        );
+    }
+
+    /**
      * @Route("/", name="index")
      * @Template()
      */
