@@ -1,7 +1,7 @@
 # Der Störungsmelder
 
+Live Demo: http://stoerungsmelder.r00tmakr0.org/
 Das Ganze Ding hier basiert auf [Symfony][1].
-
 
 ## Installation unter Windows
 ### Voraussetzungen
@@ -16,6 +16,8 @@ Das Ganze Ding hier basiert auf [Symfony][1].
 PHP nach c:\php5 installieren. Siehe [windows.php.net][3].
 
 ### [XAMPP][4] Konfigurieren
+
+  * in conf/httpd.conf vhost_alias_module aktivieren
 
   * in conf/extra/httpd-vhosts.conf folgendes eintragen
 ```
