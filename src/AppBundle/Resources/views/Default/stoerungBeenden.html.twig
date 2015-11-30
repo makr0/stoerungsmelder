@@ -1,8 +1,9 @@
 {% extends "::layout.html.twig" %}
 
-{% block title %}Störung beenden{% endblock %}
+{% block title %}Störung {{entity.id}} beenden{% endblock %}
 
 {% block content %}
-    <h2>TODO: Störung beenden Screen</h2>
+    <p>Maschine {{entity.maschine.name}} ({{entity.maschine.seriennummer}}) wurde entstört</p>
+    {{form(form)}}
 
 {% endblock %}

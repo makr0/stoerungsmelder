@@ -1,9 +1,10 @@
 {
-    "name": "stoerungsmelder",
-    "authors": [
-        "makr0"
-    ],
-    "dependencies": {
-        "startbootstrap-sb-admin-2": "~1.0.7"
-    }
+  "name": "stoerungsmelder",
+  "authors": [
+    "makr0"
+  ],
+  "dependencies": {
+    "startbootstrap-sb-admin-2": "~1.0.7",
+    "angular": "angularjs#~1.4.8"
+  }
 }

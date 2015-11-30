@@ -1,7 +1,7 @@
 {% extends "::layout.html.twig" %}
 
 {% block title %}
-	{% if not stoerungen %}
+	{% if not stoerungen_aktuell %}
 		Alles OK
 	{% else %}
 		aktuelle Störungen
@@ -12,10 +12,11 @@
     <a class="btn btn-danger" href="{{ path('stoerung_neu') }}">
         neue Störung
     </a>
-	{% if stoerungen %}
+	{% if stoerungen_aktuell %}
     <table class="table-striped table">
         <thead>
             <tr>
+                <th>art</th>
                 <th>seit</th>
                 <th>Abteilung</th>
                 <th>Maschine</th>
@@ -23,8 +24,16 @@
             </tr>
         </thead>
         <tbody>
-		{% for stoerung in stoerungen %}
+		{% for stoerung in stoerungen_aktuell %}
 			<tr>
+                <td>
+                    {% if stoerung.art == 'S' %}
+                        {{ label_warning('störung') }}
+                    {% endif %}
+                    {% if stoerung.art == 'A' %}
+                        {{ label_danger('ausfall') }}
+                    {% endif %}
+                </td>
                 <td>{{ stoerung.stStart|date("d.m. H:i")}}</td>
                 <td>{{ stoerung.maschine.abteilung }}</td>
                 <td>{{ stoerung.maschine }}</td>
@@ -37,4 +46,25 @@
         </tbody>
 	</table>
 	{% endif %}
+    {% if stoerungen_behoben %}
+        <h2>behobene Störungen</h2>
+    <table class="table-striped table">
+        <thead>
+            <tr>
+                <th>von-bis</th>
+                <th>Abteilung/Maschine</th>
+                <th>Massnahmen</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for stoerung in stoerungen_behoben %}
+            <tr>
+                <td>{{ stoerung.stStart|date("d.m. H:i")}} - {{ stoerung.stEnd|date("d.m. H:i")}}</td>
+                <td>{{ stoerung.maschine.abteilung }}/{{ stoerung.maschine }}</td>
+                <td>{{ stoerung.massnahmen }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
 {% endblock %}

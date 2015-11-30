@@ -109,31 +109,6 @@ class Maschine
     }
 
     /**
-     * Set zustand
-     *
-     * @param string $zustand
-     *
-     * @return Maschine
-     */
-    public function setZustand($zustand)
-    {
-        $this->zustand = $zustand;
-
-        return $this;
-    }
-
-    /**
-     * Get zustand
-     *
-     * @return string
-     */
-    public function getZustand()
-    {
-        return $this->zustand;
-    }
-
-
-    /**
      * Set abteilung
      *
      * @param \stdClass $abteilung

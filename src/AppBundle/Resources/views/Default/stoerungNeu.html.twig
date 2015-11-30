@@ -2,7 +2,56 @@
 
 {% block title %}Neue Störung{% endblock %}
 
-{% block content %}
-    <h2>TODO: Störung neu Screen</h2>
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript">
 
+angular.module('selectMachineApp',[])
+.config(function($interpolateProvider) {
+    $interpolateProvider.startSymbol('|');
+    $interpolateProvider.endSymbol('|');
+ })
+.controller('selectCtrl',function($scope,$interpolate){
+	$scope.abteilungen = {{ abteilungen  | serialize('json') | raw }};
+	var pathTpl = '{{ path('stoerung_neu_save', { 'maschineId': "|maschine.id|",'art':"|art|" } )  }}';
+	console.log( pathTpl );
+	$scope.makelink = $interpolate(pathTpl);
+	console.log( $scope.makelink);
+})
+
+
+	</script>
+{% endblock %}
+
+{% block content %}
+{% verbatim %}
+    <div class="row"
+    	ng-app="selectMachineApp" ng-controller="selectCtrl">
+    	<div class="col-xs-3">
+    		<h2>Abteilung</h2>
+	    	<div ng-if="abteilungen">
+	    		<select class="form-control" ng-model="$parent.abteilung"
+	    			  ng-options="item as item.name for item in abteilungen">
+	    		</select>
+	    	</div>
+	    </div>
+    	<div class="col-xs-3">
+    		<h2>Maschine</h2>
+	    	<div ng-if="abteilung">
+	    		<select class="form-control" ng-model="$parent.maschine"
+					ng-options="item as item.name for item in $parent.abteilung.maschinen">
+	    		</select>
+	    	</div>
+	    </div>
+    	<div class="col-xs-3">
+    		<h2>Art</h2>
+	    	<a ng-href="|makelink({maschine:maschine,art:'S'})|" ng-if="maschine" class="btn btn-primary">
+	    		Störung
+	    	</a>
+	    	<a ng-href="|makelink({maschine:maschine,art:'A'})|" ng-if="maschine" class="btn btn-danger">
+	    		Ausfall
+	    	</a>
+        </div>
+    </div>
+{% endverbatim %}
 {% endblock %}
