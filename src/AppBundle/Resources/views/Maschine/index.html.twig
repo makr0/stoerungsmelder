@@ -8,7 +8,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Seriennummer</th>
-                <th>Actions</th>
+                <th>Aktionen</th>
             </tr>
         </thead>
         <tbody>
@@ -18,7 +18,7 @@
                 <td>{{ entity.name }}</td>
                 <td>{{ entity.seriennummer }}</td>
                 <td>
-<div class="btn-group" role="group">	<a class="btn btn-default"  href="{{ path('maschine_show', { 'id': entity.id }) }}">show</a>	<a class="btn btn-default"  href="{{ path('maschine_edit', { 'id': entity.id }) }}">edit</a>
+<div class="btn-group" role="group">	<a class="btn btn-default"  href="{{ path('maschine_show', { 'id': entity.id }) }}">anzeigen</a>	<a class="btn btn-default"  href="{{ path('maschine_edit', { 'id': entity.id }) }}">bearbeiten</a>
 </div>
                 </td>
             </tr>
@@ -27,6 +27,6 @@
     </table>
 
         <a class="btn btn-default" href="{{ path('maschine_new') }}">
-        Create a new entry
+        Neue Maschinen anlegen
     </a>
     {% endblock %}

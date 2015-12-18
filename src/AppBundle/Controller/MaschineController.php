@@ -76,7 +76,7 @@ class MaschineController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Anlegen'));
 
         return $form;
     }
@@ -165,7 +165,7 @@ class MaschineController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Aktualisieren'));
 
         return $form;
     }
@@ -240,7 +240,7 @@ class MaschineController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('maschine_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Löschen'))
             ->getForm()
         ;
     }

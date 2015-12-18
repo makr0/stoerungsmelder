@@ -9,11 +9,11 @@
                 <td>{{ entity.id }}</td>
             </tr>
             <tr>
-                <th>Ststart</th>
+                <th>Störungsbeginn</th>
                 <td>{{ entity.stStart|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Stend</th>
+                <th>Störungsende</th>
                 <td>{{ entity.stEnd|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
@@ -37,10 +37,10 @@
 
         <div class="btn-group" role="group">
     <a class="btn btn-default" href="{{ path('stoerung') }}">
-        Back to the list
+        Zurück zur Liste
     </a>
         <a class="btn btn-default" href="{{ path('stoerung_edit', { 'id': entity.id }) }}">
-            Edit
+            Bearbeiten
         </a>
     {{ form(delete_form) }}
 </div>

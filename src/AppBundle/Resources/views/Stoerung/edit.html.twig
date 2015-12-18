@@ -1,13 +1,13 @@
 {% extends '::layout.html.twig' %}
 
-{% block title -%} Stoerung edit {% endblock %}
+{% block title -%} Stoerung bearbeiten {% endblock %}
 {% block content -%}
 
     {{ form(edit_form) }}
 
         <div class="btn-group" role="group">
     <a class="btn btn-default" href="{{ path('stoerung') }}">
-        Back to the list
+        Zurück zur Liste
     </a>
     {{ form(delete_form) }}
 </div>

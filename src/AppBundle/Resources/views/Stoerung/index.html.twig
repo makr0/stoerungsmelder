@@ -6,13 +6,13 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Ststart</th>
-                <th>Stend</th>
+                <th>Störungsbeginn</th>
+                <th>Störungsende</th>
                 <th>Behoben</th>
                 <th>Bemerkungen</th>
                 <th>Massnahmen</th>
                 <th>Art</th>
-                <th>Actions</th>
+                <th>Aktionen</th>
             </tr>
         </thead>
         <tbody>
@@ -26,7 +26,7 @@
                 <td>{{ entity.massnahmen }}</td>
                 <td>{{ entity.art }}</td>
                 <td>
-<div class="btn-group" role="group">	<a class="btn btn-default"  href="{{ path('stoerung_show', { 'id': entity.id }) }}">show</a>	<a class="btn btn-default"  href="{{ path('stoerung_edit', { 'id': entity.id }) }}">edit</a>
+<div class="btn-group" role="group">	<a class="btn btn-default"  href="{{ path('stoerung_show', { 'id': entity.id }) }}">anzeigen</a>	<a class="btn btn-default"  href="{{ path('stoerung_edit', { 'id': entity.id }) }}">bearbeiten</a>
 </div>
                 </td>
             </tr>
@@ -35,6 +35,6 @@
     </table>
 
         <a class="btn btn-default" href="{{ path('stoerung_new') }}">
-        Create a new entry
+        Neue Störung melden
     </a>
     {% endblock %}
