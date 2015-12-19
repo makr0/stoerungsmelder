@@ -32,7 +32,7 @@ angular.module('selectMachineApp',[])
 {% verbatim %}
   <div ng-app="selectMachineApp" ng-controller="selectCtrl">
     <div class="row">
-    	<div class="col-xs-3">
+    	<div class="col-xs-6">
     		<h2>Abteilung</h2>
 	    	<div ng-if="abteilungen">
 	    		<select class="form-control" ng-model="$parent.abteilung"
@@ -40,7 +40,7 @@ angular.module('selectMachineApp',[])
 	    		</select>
 	    	</div>
 	    </div>
-    	<div class="col-xs-3">
+    	<div class="col-xs-6">
     		<h2>Maschine</h2>
 	    	<div ng-if="abteilung">
 	    		<select class="form-control" ng-model="$parent.maschine"
@@ -48,27 +48,28 @@ angular.module('selectMachineApp',[])
 	    		</select>
 	    	</div>
 	    </div>
-	    <div class="col-xs-3">
+    </div>
+    <div class="row" ng-if="maschine">
+	    <div class="col-xs-6">
     		<h2>Bemerkungen</h2>
-    		<textarea ng-model="bemerkungen" placeholder="Hier kommen die Bemerkungen rein!!" cols="40" rows="4">
+    		<textarea ng-model="$parent.bemerkungen"
+    		          placeholder="Hier kommen die Bemerkungen rein!!" cols="40" rows="4">
 	    	</textarea>
-	    	</div>
-    	<div class="col-xs-3">
+	   	</div>
+    	<div class="col-xs-6">
     		<h2>Art</h2>
-	    	<a ng-click="submitform('Störung')" ng-if="maschine" class="btn btn-primary">
+	    	<a ng-click="submitform('Störung')" class="btn btn-primary">
 	    		Störung
 	    	</a>
-	    	<a ng-click="submitform('Ausfall')" ng-if="maschine" class="btn btn-danger">
+	    	<a ng-click="submitform('Ausfall')" class="btn btn-danger">
 	    		Ausfall
 	    	</a>
         </div>
     </div>
-    <div class="row">
-    	<form id="dieForm" method="post">
-    		<textarea ng-model="bemerkungen" name="bemerkungen"></textarea>
-    		<input type="submit">
-    	</form>
-    </div>
+	<form id="dieForm" method="post" style="display:none;">
+		<textarea ng-model="bemerkungen" name="bemerkungen"></textarea>
+		<input type="submit">
+	</form>
   </div>
 {% endverbatim %}
 {% endblock %}
