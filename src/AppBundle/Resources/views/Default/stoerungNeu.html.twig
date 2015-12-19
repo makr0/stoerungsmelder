@@ -13,7 +13,7 @@ angular.module('selectMachineApp',[])
  })
 .controller('selectCtrl',function($scope,$interpolate){
 	$scope.abteilungen = {{ abteilungen  | serialize('json') | raw }};
-	var pathTpl = '{{ path('stoerung_neu_save', { 'maschineId': "|maschine.id|",'art':"|art|" } )  }}';
+	var pathTpl = '{{ path('stoerung_neu_save', { 'maschineId': "|maschine.id|",'bemerkungen':"|bemerkungen|",'art':"|art|" } )  }}';
 	console.log( pathTpl );
 	$scope.makelink = $interpolate(pathTpl);
 	console.log( $scope.makelink);
@@ -43,6 +43,11 @@ angular.module('selectMachineApp',[])
 	    		</select>
 	    	</div>
 	    </div>
+	    <div class="col-xs-3">
+    		<h2>Bemerkungen</h2>
+    		<textarea placeholder="Hier kommen die Bemerkungen rein!!" cols="40" rows="4">
+	    	</textarea>
+	    	</div>
     	<div class="col-xs-3">
     		<h2>Art</h2>
 	    	<a ng-href="|makelink({maschine:maschine,art:'Störung'})|" ng-if="maschine" class="btn btn-primary">

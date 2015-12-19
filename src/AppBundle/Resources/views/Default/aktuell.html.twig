@@ -20,6 +20,7 @@
                 <th>seit</th>
                 <th>Abteilung</th>
                 <th>Maschine</th>
+                <th>Bemerkungen</th>
                 <th>Aktionen</th>
             </tr>
         </thead>
@@ -27,16 +28,17 @@
 		{% for stoerung in stoerungen_aktuell %}
 			<tr>
                 <td>
-                    {% if stoerung.art == 'S' %}
+                    {% if stoerung.art == 'Störung' %}
                         {{ label_warning('störung') }}
                     {% endif %}
-                    {% if stoerung.art == 'A' %}
+                    {% if stoerung.art == 'Ausfall' %}
                         {{ label_danger('ausfall') }}
                     {% endif %}
                 </td>
                 <td>{{ stoerung.stStart|date("d.m. H:i")}}</td>
                 <td>{{ stoerung.maschine.abteilung }}</td>
                 <td>{{ stoerung.maschine }}</td>
+                <td>{{ stoerung.bemerkungen}}</td>
                 <td>
 	                <a class="btn btn-default"  href="{{ path('stoerung_beenden', { 'id': stoerung.id }) }}">beenden</a>
 

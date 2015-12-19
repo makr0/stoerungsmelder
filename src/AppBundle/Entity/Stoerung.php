@@ -66,7 +66,7 @@ class Stoerung
     /**
      * @var string
      *
-     * @ORM\Column(name="art", type="string", length=5)
+     * @ORM\Column(name="art", type="string", length=7)
      */
     private $art;
 
