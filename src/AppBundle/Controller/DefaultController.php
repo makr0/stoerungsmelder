@@ -101,10 +101,10 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/neu/{maschineId}/{art}", name="stoerung_neu_save")
+     * @Route("/neu/{maschineId}/{art}/{bemerkung}", name="stoerung_neu_save")
      * @Template()
      */
-    public function stoerungNeuSaveAction($maschineId,$art)
+    public function stoerungNeuSaveAction($maschineId,$art,$bemerkung)
     {
         $em = $this->getDoctrine()->getManager();
         $maschine = $em->getRepository('AppBundle:Maschine')->find($maschineId);
@@ -114,6 +114,7 @@ class DefaultController extends Controller
         $entity->setBehoben(false);
         $entity->setMaschine( $maschine );
         $entity->setArt( $art );
+        $entity->setbemerkung( $bemerkung );
         $em->persist($entity);
         $em->flush();
         return $this->redirect($this->generateUrl('aktuelle_stoerungen') );
