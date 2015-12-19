@@ -13,10 +13,15 @@ angular.module('selectMachineApp',[])
  })
 .controller('selectCtrl',function($scope,$interpolate){
 	$scope.abteilungen = {{ abteilungen  | serialize('json') | raw }};
-	var pathTpl = '{{ path('stoerung_neu_save', { 'maschineId': "|maschine.id|",'bemerkungen':"|bemerkungen|",'art':"|art|" } )  }}';
+	var pathTpl = '{{ path('stoerung_neu_save', { 'maschineId': "|maschine.id|",'art':"|art|" } )  }}';
 	console.log( pathTpl );
-	$scope.makelink = $interpolate(pathTpl);
-	console.log( $scope.makelink);
+	var makelink = $interpolate(pathTpl);
+	$scope.submitform = function(art) {
+		var form = angular.element('#dieForm');
+		form.attr('action', makelink({maschine:$scope.maschine,art:art}) );
+		console.log(form);
+		form.submit();
+	}
 })
 
 
@@ -25,8 +30,8 @@ angular.module('selectMachineApp',[])
 
 {% block content %}
 {% verbatim %}
-    <div class="row"
-    	ng-app="selectMachineApp" ng-controller="selectCtrl">
+  <div ng-app="selectMachineApp" ng-controller="selectCtrl">
+    <div class="row">
     	<div class="col-xs-3">
     		<h2>Abteilung</h2>
 	    	<div ng-if="abteilungen">
@@ -50,13 +55,20 @@ angular.module('selectMachineApp',[])
 	    	</div>
     	<div class="col-xs-3">
     		<h2>Art</h2>
-	    	<a ng-href="|makelink({maschine:maschine,art:'Störung',bemerkungen:bemerkungen})|" ng-if="maschine" class="btn btn-primary">
+	    	<a ng-click="submitform('Störung')" ng-if="maschine" class="btn btn-primary">
 	    		Störung
 	    	</a>
-	    	<a ng-href="|makelink({maschine:maschine,art:'Ausfall',bemerkungen:bemerkungen})|" ng-if="maschine" class="btn btn-danger">
+	    	<a ng-click="submitform('Ausfall')" ng-if="maschine" class="btn btn-danger">
 	    		Ausfall
 	    	</a>
         </div>
     </div>
+    <div class="row">
+    	<form id="dieForm" method="post">
+    		<textarea ng-model="bemerkungen" name="bemerkungen"></textarea>
+    		<input type="submit">
+    	</form>
+    </div>
+  </div>
 {% endverbatim %}
 {% endblock %}
