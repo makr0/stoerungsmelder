@@ -121,13 +121,20 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/laufende_maschinen", name="laufende_maschinen")
+     * @Route("/laufende_maschinen/{$Abteilung}/{$maschineId}/{$seriennummer}}", name="laufende_maschinen")
      * @Template()
      */
-    public function laufendeMaschinenAction()
+    public function laufendeMaschinenAction($Abteilung,$maschineId,$seriennummer)
     {
-        return array(
-                // ...
+         $em = $this->getDoctrine()->getManager();
+        $maschine = $em->getRepository('AppBundle:Maschine')->findAll($maschineId);
+        $entity = laufende_maschinen();
+        $entity->setabteilung( $abteilung );
+        $entity->setMaschine( $maschine );
+        $entity->setseriennummer( $seriennummer );
+        $em->persist($entity);
+        $em->flush();
+        return $this->redirect($this->generateUrl('laufende_maschinen')
         );
     }
 

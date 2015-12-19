@@ -50,10 +50,10 @@ angular.module('selectMachineApp',[])
 	    	</div>
     	<div class="col-xs-3">
     		<h2>Art</h2>
-	    	<a ng-href="|makelink({maschine:maschine,art:'Störung'})|" ng-if="maschine" class="btn btn-primary">
+	    	<a ng-href="|makelink({maschine:maschine,art:'Störung',bemerkungen:bemerkungen})|" ng-if="maschine" class="btn btn-primary">
 	    		Störung
 	    	</a>
-	    	<a ng-href="|makelink({maschine:maschine,art:'Ausfall'})|" ng-if="maschine" class="btn btn-danger">
+	    	<a ng-href="|makelink({maschine:maschine,art:'Ausfall',bemerkungen:bemerkungen})|" ng-if="maschine" class="btn btn-danger">
 	    		Ausfall
 	    	</a>
         </div>
