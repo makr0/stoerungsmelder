@@ -127,9 +127,9 @@ class DefaultController extends Controller
     public function laufendeMaschinenAction($Abteilung,$maschineId,$seriennummer)
     {
          $em = $this->getDoctrine()->getManager();
-        $maschine = $em->getRepository('AppBundle:Maschine')->findAll($maschineId);
+        $maschine = $em->getRepository('AppBundle:Maschine')->findAll($Abteilung);
         $entity = laufende_maschinen();
-        $entity->setabteilung( Dreherei );
+        $entity->setabteilung( $Abteilung );
         $entity->setMaschine( $maschine );
         $entity->setseriennummer( $seriennummer );
         $em->persist($entity);
