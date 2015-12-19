@@ -38,7 +38,7 @@
                 <td>{{ stoerung.stStart|date("d.m. H:i")}}</td>
                 <td>{{ stoerung.maschine.abteilung }}</td>
                 <td>{{ stoerung.maschine }}</td>
-                <td>{{ stoerung.bemerkungen}}</td>
+                <td>{{ stoerung.bemerkung}}</td>
                 <td>
 	                <a class="btn btn-default"  href="{{ path('stoerung_beenden', { 'id': stoerung.id }) }}">beenden</a>
 
