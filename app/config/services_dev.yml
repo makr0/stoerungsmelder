@@ -1,0 +1,17 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+
+services:
+    hautelook_alice.bare_faker:
+        class: Faker\Generator
+        lazy: true
+        arguments:
+            - %hautelook_alice.locale%
+        calls:
+            - [ seed, [ %hautelook_alice.seed% ] ]
+    faker.provider.stoerungsmelder:
+        class: AppBundle\DataFixtures\Provider\stoerungsmelderProvider
+        arguments: [ @hautelook_alice.bare_faker ]
+        tags: [ { name: hautelook_alice.faker.provider } ]
