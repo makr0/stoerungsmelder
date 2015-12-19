@@ -1,0 +1,18 @@
+AppBundle\Entity\Abteilung:
+    abteilung{1..5}:
+        name (unique): <abteilungsname()>
+
+AppBundle\Entity\Maschine:
+    maschine{1..20}:
+        name (unique): <name()>
+        abteilung: '@abteilung*'
+        seriennummer (unique): <regexify('([A-Z]{2,4})?([0-9]{4}|[0-9]{8})')>
+
+AppBundle\Entity\Stoerung:
+    stoerung{1..200}:
+        maschine: '@maschine*'
+        stStart: <dateTimeBetween('-200 days', '-2 days')>
+        stEnd: <dateTimeBetween($stStart, 'now')>
+        behoben: 98%? 1 : 0
+        art: 30%? A : S
+        bemerkungen: <realText(50)>
