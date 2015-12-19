@@ -4,11 +4,22 @@
 
 {% block content %}
 
-	<tr>
-		<th>Abteilung</th>
-		<th>Maschine</th>
-		<th>Seriennummer</th>
-	</tr>
+
+{% for abteilung in abteilungen %}
+
+<h1>$abteilung</h1>
+
+		<ul>
+    		{% for maschine in maschines %}
+        	<li>{{ maschine.name|e }}</li>
+        	<li>{{ maschine.seriennummer|e }}</li>
+    		{% else %}
+        	<li><em>Es wurde keine Maschine gefunden</em></li>
+    		{% endfor %}
+		</ul>
+
+{% endfor %}
+	
     <h2>TODO: Laufende Maschinen anzeigen</h2>
 
 {% endblock %}

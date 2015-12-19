@@ -129,7 +129,7 @@ class DefaultController extends Controller
          $em = $this->getDoctrine()->getManager();
         $maschine = $em->getRepository('AppBundle:Maschine')->findAll($maschineId);
         $entity = laufende_maschinen();
-        $entity->setabteilung( $abteilung );
+        $entity->setabteilung( Dreherei );
         $entity->setMaschine( $maschine );
         $entity->setseriennummer( $seriennummer );
         $em->persist($entity);
