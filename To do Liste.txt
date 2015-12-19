@@ -1,4 +1,11 @@
 1.Benutzerverwaltung
+Nur anlegen von störungen
+Fertig melden der Störung
+Diagramme ansehen 
+Admin
+
+
+
 2.Einfügen von Bildern zu den Maschinen
 3.Auswertung der Stillstandszeiten von ungenau zu genau (Jahr bis Woche alle Maschinen bis zur Maschine)
 4.Automatisches senden einer Mail bei Neuanlage einer Störung an Haustechnik
