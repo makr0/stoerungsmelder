@@ -53,15 +53,15 @@ angular.module('selectMachineApp',[])
 	    <div class="col-xs-6">
     		<h2>Bemerkungen</h2>
     		<textarea ng-model="$parent.bemerkungen"
-    		          placeholder="Hier kommen die Bemerkungen rein!!" cols="40" rows="4">
+    		          placeholder="Hier kommen die Bemerkungen rein!!" cols="60" rows="4">
 	    	</textarea>
 	   	</div>
     	<div class="col-xs-6">
     		<h2>Art</h2>
-	    	<a ng-click="submitform('Störung')" class="btn btn-primary">
+	    	<a ng-click="submitform('S')" class="btn btn-primary">
 	    		Störung
 	    	</a>
-	    	<a ng-click="submitform('Ausfall')" class="btn btn-danger">
+	    	<a ng-click="submitform('A')" class="btn btn-danger">
 	    		Ausfall
 	    	</a>
         </div>
