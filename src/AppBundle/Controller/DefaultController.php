@@ -119,7 +119,7 @@ class DefaultController extends Controller
         $entity->setMaschine( $maschine );
         $entity->setArt( $art );
 
-        dump($entity);
+        $dump = ($entity);
         $em->persist($entity);
         $em->flush();
         return $this->redirect($this->generateUrl('aktuelle_stoerungen') );

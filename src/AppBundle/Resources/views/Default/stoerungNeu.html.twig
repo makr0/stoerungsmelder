@@ -52,7 +52,7 @@ angular.module('selectMachineApp',[])
     <div class="row" ng-if="maschine">
 	    <div class="col-xs-6">
     		<h2>Bemerkungen</h2>
-    		<textarea ng-model="$parent.bemerkungen"
+    		<textarea class="form-control" ng-model="$parent.bemerkungen"
     		          placeholder="Hier kommen die Bemerkungen rein!!" cols="60" rows="4">
 	    	</textarea>
 	   	</div>
@@ -67,7 +67,7 @@ angular.module('selectMachineApp',[])
         </div>
     </div>
 	<form id="dieForm" method="post" style="display:none;">
-		<textarea ng-model="bemerkungen" name="bemerkungen"></textarea>
+		<textarea class="form-control" ng-model="bemerkungen" name="bemerkungen"></textarea>
 		<input type="submit">
 	</form>
   </div>
