@@ -7,7 +7,7 @@ Admin
 
 
 2.Einfügen von Bildern zu den Maschinen
-3.Auswertung der Stillstandszeiten von ungenau zu genau (Jahr bis Woche alle Maschinen bis zur Maschine)
+3.Auswertung der Stillstandszeiten von ungenau zu genau (Jahr bis Woche alle Maschinen bis zur Maschine) ACHTUNG 2 UND 3 SCHICHT MÖGLICH!!!
 4.Vollautomatisches senden einer Mail bei Neuanlage einer Störung an Haustechnik mit Abteilung Maschine und Bemerkung
 5.Bild oben rechts einfügen (Bild entweder an der Stelle belassen oder bessere Stelle finden) warum lässt sich das bild nicht verschieben hatte es an der Oberen linken Ecke
 konnte es aber nicht nach Rechts verschieben) denke das könnte eine gute Position für das Firmenloge sein oder was denkst du? Bild ist nicht im Fontend zusehen
