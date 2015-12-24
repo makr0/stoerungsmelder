@@ -58,6 +58,7 @@ class Stoerung
 
     /**
      * @var string
+     * 
      *
      * @ORM\Column(name="massnahmen", type="text", nullable=true)
      */
