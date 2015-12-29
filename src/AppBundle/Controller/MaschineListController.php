@@ -1,0 +1,139 @@
+<?php
+
+namespace AppBundle\Controller;
+
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use AppBundle\Form\MaschineType;
+use AppBundle\Entity\Maschine;
+
+/**
+ * Maschinen nach Abteilung auflisten
+ *
+ * @Route("/maschinelist")
+ */
+class MaschineListController extends Controller
+{
+
+    /**
+     * Maschinen einer Abteilung auflisten
+     *
+     * @Route("/list/{abteilung}",  defaults={"abteilung" = null}, name="maschinelist_index")
+     * @Method("GET")
+     * @Template()
+     */
+    public function indexAction($abteilung)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $abteilungen = $em->getRepository('AppBundle:Abteilung')
+                          ->findAll();
+
+        if( $abteilung !== null ) {
+	        $maschinen = $em->getRepository('AppBundle:Maschine')
+	                        ->findBy(
+	    						array('abteilung' => $abteilung)
+	    					);
+        } else {
+        	$maschinen = array();
+        }
+
+        return array(
+        	'aktive_abteilung' => $abteilung,
+            'abteilungen'=> $abteilungen,
+            'maschinen' => $maschinen
+        );
+    }
+    /**
+     * Maschine bearbeiten
+     *
+     * @Route("/edit/{maschine_id}",  name="maschinelist_edit")
+     * @Method({"GET","POST"})
+     * @Template()
+     */
+    public function editAction(Request $request, $maschine_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $maschine = $em->getRepository('AppBundle:Maschine')->find($maschine_id);
+
+        if (!$maschine) {
+            throw $this->createNotFoundException('Maschine ID '.$maschine_id.' existiert nicht (mehr).');
+        }
+        $form = $this->createForm(new MaschineType(), $maschine );
+        $form->add('submit', 'submit', array('label' => 'Speichern'));
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+        	$em->flush();
+            return $this->redirect($this->generateUrl('maschinelist_index',
+            	          array('abteilung' => $maschine->getAbteilung()->getId() )
+            	          ));
+		}
+
+        return array(
+        	'form' => $form->createView(),
+            'maschine'=> $maschine
+        );
+    }
+    /**
+     * Maschine erstellen
+     *
+     * @Route("/newmachine/{abteilung_id}",  name="maschinelist_new")
+     * @Method({"GET","POST"})
+     * @Template()
+     */
+    public function newAction(Request $request, $abteilung_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $abteilung = $em->getRepository('AppBundle:Abteilung')->find($abteilung_id);
+
+        if (!$abteilung) {
+            throw $this->createNotFoundException('Abteilung ID '.$abteilung_id.' existiert nicht.');
+        }
+
+        $maschine = new Maschine();
+        $maschine->setAbteilung( $abteilung );
+
+        $form = $this->createForm(new MaschineType( array('zeige_abteilung' => false) ), $maschine );
+        $form->add('submit', 'submit', array('label' => 'Anlegen'));
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+        	$em->persist($maschine);
+        	$em->flush();
+            return $this->redirect($this->generateUrl('maschinelist_index',
+            	          array('abteilung' => $maschine->getAbteilung()->getId() )
+            	          ));
+		}
+
+        return array(
+        	'form' => $form->createView(),
+            'maschine'=> $maschine,
+            'abteilung' => $abteilung
+        );
+    }
+    /**
+     * Maschine erstellen
+     *
+     * @Route("/viewmaschine/{maschine_id}",  name="maschinelist_view")
+     * @Method({"GET"})
+     * @Template()
+     */
+    public function viewAction($maschine_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $maschine = $em->getRepository('AppBundle:Maschine')->find($maschine_id);
+
+        if (!$maschine) {
+            throw $this->createNotFoundException('Maschine ID '.$maschine_id.' existiert nicht (mehr).');
+        }
+
+        return array(
+            'maschine'=> $maschine
+        );
+    }
+
+}

@@ -1,0 +1,14 @@
+{% extends '::layout.html.twig' %}
+
+{% block title -%} Maschine bearbeiten {% endblock %}
+{% block content -%}
+
+    {{ form(form) }}
+
+    <div class="btn-group" role="group">
+    <a class="btn btn-default"
+       href="{{ path('maschinelist_index',{'abteilung':maschine.abteilung.id}) }}">
+        Zurück zur Liste
+    </a>
+</div>
+{% endblock %}

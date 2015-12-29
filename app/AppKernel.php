@@ -16,8 +16,17 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+
+            // Bootstrap Styling
+            new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
+
+            // Bild Uploads
+            new Vich\UploaderBundle\VichUploaderBundle(),
+            // Bildgrößen neu rechnen
+            new Liip\ImagineBundle\LiipImagineBundle(),
+
+            // die eigentliche App
             new AppBundle\AppBundle(),
         );
 

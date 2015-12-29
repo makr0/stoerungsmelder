@@ -6,29 +6,25 @@
             <tbody>
             <tr>
                 <th class="field-label col-xs-2 active">Name</td>
-                <td>{{ entity.name }}</td>
+                <td>{{ maschine.name }}</td>
 
             </tr>
             <tr>
                 <th>Seriennummer</th>
-                <td>{{ entity.seriennummer }}</td>
+                <td>{{ maschine.seriennummer }}</td>
             </tr>
             <tr>
                 <th>Bild</th>
                 <td>
-                    <img src="{{ vich_uploader_asset(entity, 'bild') | imagine_filter('view')}}" alt="{{ entity.name }}" />
+                    <img src="{{ vich_uploader_asset(maschine, 'bild') | imagine_filter('view')}}" alt="{{ maschine.name }}" />
                 </td>
             </tr>
 
         </tbody>
     </table>
-        <div class="btn-group" role="group">
-    <a class="btn btn-default" href="{{ path('maschine') }}">
+    <a class="btn btn-default"
+       href="{{ path('maschinelist_index',{'abteilung':maschine.abteilung.id}) }}">
         Zurück zur Liste
     </a>
-        <a class="btn btn-default" href="{{ path('maschine_edit', { 'id': entity.id }) }}">
-            Bearbeiten
-        </a>
-    {{ form(delete_form) }}
 </div>
 {% endblock %}

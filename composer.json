@@ -23,7 +23,9 @@
         "jms/serializer-bundle": "^1.1",
         "nelmio/alice": "^2.1",
         "hautelook/alice-bundle": "^1.1",
-        "doctrine/data-fixtures": "^1.1"
+        "doctrine/data-fixtures": "^1.1",
+        "vich/uploader-bundle": "^0.14.0",
+        "liip/imagine-bundle": "^1.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

@@ -1,0 +1,67 @@
+{% extends '::layout.html.twig' %}
+
+{% block title -%} Maschinen {% endblock %}
+{% block topbutton -%}
+    {% if aktive_abteilung %}
+        <a href="{{ path('maschinelist_new',{ 'abteilung_id': aktive_abteilung }) }}" class="btn btn-default">neue Maschine</a>
+    {% endif %}
+{% endblock %}
+
+{% block content -%}
+
+
+    <ul class="nav nav-tabs">
+        {% for abteilung in abteilungen %}
+            <li role="presentation"
+                {% if aktive_abteilung == abteilung.id %}
+                    class="active"
+                {% endif %}}
+            >
+                <a href="{{ path('maschinelist_index', { 'abteilung': abteilung.id }) }}">
+                    {{abteilung.name}}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    {% if not aktive_abteilung %}
+        <div class="jumbotron">
+            <h1>Bitte Abteilung auswählen</h1>
+        </div>
+    {% else %}
+        <table class="table-striped table">
+            <thead>
+                <tr>
+                    <th>Bild</th>
+                    <th>Name</th>
+                    <th>Seriennummer</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for maschine in maschinen %}
+                <tr>
+                    <td>
+                        {% if maschine.bildDateiname %}
+                            <img src="{{ vich_uploader_asset(maschine, 'bild') | imagine_filter('thumb')}}" alt="{{ maschine.name }}" />
+                        {% else %}
+                            kein bild
+                        {% endif %}
+                    </td>
+                    <td>{{ maschine.name }}</td>
+                    <td>
+                        {{ maschine.seriennummer }}
+                    </td>
+                    <td>
+                        <a class="btn btn-default" href="{{path('maschinelist_edit', { 'maschine_id': maschine.id } ) }}">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                        <a class="btn btn-default" href="{{path('maschinelist_view', { 'maschine_id': maschine.id } ) }}">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

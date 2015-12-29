@@ -3,13 +3,17 @@
 {% block body %}
     <div id="wrapper">
         {{ include("AppBundle::navigations.html.twig") }}
-        <div id="page-wrapper">
+        <div id="page-wrapper" class="container">
             {% block top_row %}
                 <div class="row">
                     <div class="col-xs-12">
                         <h1 class="page-header">
                             {% block title %}
                             {% endblock %}
+                            <div style="float:right">
+                            {% block topbutton %}
+                            {% endblock %}
+                            </div>
                         </h1>
                     </div>
                 </div>
@@ -25,5 +29,5 @@
         <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
 
- 
+
 {% endblock %}
