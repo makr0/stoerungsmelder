@@ -52,12 +52,13 @@ class Stoerung
     /**
      * @var string
      *
-     * @ORM\Column(name="bemerkungen", type="text", nullable=true)
+     * @ORM\Column(name="bemerkungen", type="text")
      */
     private $bemerkungen;
 
     /**
      * @var string
+     * 
      *
      * @ORM\Column(name="massnahmen", type="text", nullable=true)
      */
@@ -66,7 +67,7 @@ class Stoerung
     /**
      * @var string
      *
-     * @ORM\Column(name="art", type="string", length=7)
+     * @ORM\Column(name="art", type="string", length=5)
      */
     private $art;
 

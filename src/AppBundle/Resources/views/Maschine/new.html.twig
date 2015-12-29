@@ -4,9 +4,14 @@
 {% block content -%}
     {{ form(form) }}
 
-        <div class="btn-group" role="group">
+<div class="btn-group" role="group">
     <a class="btn btn-default" href="{{ path('maschine') }}">
         Zurück zur Liste
+    </a>
+</div>
+<div class="btn-group" role="group">
+    <a class="btn btn-default" href="{{ path('maschine_new') }}">
+        Formlar löschen
     </a>
 </div>
 {% endblock %}

@@ -13,10 +13,15 @@ angular.module('selectMachineApp',[])
  })
 .controller('selectCtrl',function($scope,$interpolate){
 	$scope.abteilungen = {{ abteilungen  | serialize('json') | raw }};
-	var pathTpl = '{{ path('stoerung_neu_save', { 'maschineId': "|maschine.id|",'bemerkungen':"|bemerkungen|",'art':"|art|" } )  }}';
+	var pathTpl = '{{ path('stoerung_neu_save', { 'maschineId': "|maschine.id|",'art':"|art|" } )  }}';
 	console.log( pathTpl );
-	$scope.makelink = $interpolate(pathTpl);
-	console.log( $scope.makelink);
+	var makelink = $interpolate(pathTpl);
+	$scope.submitform = function(art) {
+		var form = angular.element('#dieForm');
+		form.attr('action', makelink({maschine:$scope.maschine,art:art}) );
+		console.log(form);
+		form.submit();
+	}
 })
 
 
@@ -25,9 +30,9 @@ angular.module('selectMachineApp',[])
 
 {% block content %}
 {% verbatim %}
-    <div class="row"
-    	ng-app="selectMachineApp" ng-controller="selectCtrl">
-    	<div class="col-xs-3">
+  <div ng-app="selectMachineApp" ng-controller="selectCtrl">
+    <div class="row">
+    	<div class="col-xs-6">
     		<h2>Abteilung</h2>
 	    	<div ng-if="abteilungen">
 	    		<select class="form-control" ng-model="$parent.abteilung"
@@ -35,7 +40,7 @@ angular.module('selectMachineApp',[])
 	    		</select>
 	    	</div>
 	    </div>
-    	<div class="col-xs-3">
+    	<div class="col-xs-6">
     		<h2>Maschine</h2>
 	    	<div ng-if="abteilung">
 	    		<select class="form-control" ng-model="$parent.maschine"
@@ -43,20 +48,28 @@ angular.module('selectMachineApp',[])
 	    		</select>
 	    	</div>
 	    </div>
-	    <div class="col-xs-3">
+    </div>
+    <div class="row" ng-if="maschine">
+	    <div class="col-xs-6">
     		<h2>Bemerkungen</h2>
-    		<textarea ng-model="bemerkungen" placeholder="Hier kommen die Bemerkungen rein!!" cols="40" rows="4">
+    		<textarea class="form-control" ng-model="$parent.bemerkungen"
+    		          placeholder="Hier kommen die Bemerkungen rein!!" cols="60" rows="4">
 	    	</textarea>
-	    	</div>
-    	<div class="col-xs-3">
+	   	</div>
+    	<div class="col-xs-6">
     		<h2>Art</h2>
-	    	<a ng-href="|makelink({maschine:maschine,art:'Störung',bemerkungen:bemerkungen})|" ng-if="maschine" class="btn btn-primary">
+	    	<a ng-click="submitform('S')" class="btn btn-primary">
 	    		Störung
 	    	</a>
-	    	<a ng-href="|makelink({maschine:maschine,art:'Ausfall',bemerkungen:bemerkungen})|" ng-if="maschine" class="btn btn-danger">
+	    	<a ng-click="submitform('A')" class="btn btn-danger">
 	    		Ausfall
 	    	</a>
         </div>
     </div>
+	<form id="dieForm" method="post" style="display:none;">
+		<textarea class="form-control" ng-model="bemerkungen" name="bemerkungen"></textarea>
+		<input type="submit">
+	</form>
+  </div>
 {% endverbatim %}
 {% endblock %}

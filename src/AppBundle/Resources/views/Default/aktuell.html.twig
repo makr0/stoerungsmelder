@@ -28,10 +28,10 @@
 		{% for stoerung in stoerungen_aktuell %}
 			<tr>
                 <td>
-                    {% if stoerung.art == 'Störung' %}
+                    {% if stoerung.art == 'S' %}
                         {{ label_warning('störung') }}
                     {% endif %}
-                    {% if stoerung.art == 'Ausfall' %}
+                    {% if stoerung.art == 'A' %}
                         {{ label_danger('ausfall') }}
                     {% endif %}
                 </td>

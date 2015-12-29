@@ -15,15 +15,7 @@ class StoerungType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('maschine')
-            ->add('stStart')
-            //->add('behoben')
-            //->add('stEnd')
             ->add('bemerkungen')
-            //->add('massnahmen')
-            ->add('art','choice',array('choices'=>
-                array('Störung'=>'Störung','Ausfall'=>'Ausfall')
-            ))
         ;
     }
 
@@ -42,6 +34,6 @@ class StoerungType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_stoerung';
+        return '';
     }
 }

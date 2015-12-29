@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\Entity\Stoerung;
 use AppBundle\Entity\Maschine;
 use AppBundle\Form\StoerungBeendenType;
+use AppBundle\Form\StoerungType;
 
 /**
  * Default controller. Hier finden alle Aktionen auf den Datensätzen statt
@@ -101,33 +102,44 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/neu/{maschineId}/{art}/{bemerkungen}", name="stoerung_neu_save")
+     * @Route("/neu/{maschineId}/{art}", name="stoerung_neu_save")
+     * @Method("POST")
      * @Template()
      */
-    public function stoerungNeuSaveAction($maschineId,$art,$bemerkungen)
+    public function stoerungNeuSaveAction(Request $request, $maschineId,$art)
     {
         $em = $this->getDoctrine()->getManager();
         $maschine = $em->getRepository('AppBundle:Maschine')->find($maschineId);
         $entity = new Stoerung();
+        $form = $this->createForm(new StoerungType(), $entity);
+        $form->handleRequest($request);
         $entity->setStStart( new \DateTime() );
         $entity->setStEnd( new \DateTime() );
         $entity->setBehoben(false);
         $entity->setMaschine( $maschine );
         $entity->setArt( $art );
-        $entity->setbemerkungen( $bemerkungen );
+
+        $dump = ($entity);
         $em->persist($entity);
         $em->flush();
         return $this->redirect($this->generateUrl('aktuelle_stoerungen') );
     }
 
     /**
-     * @Route("/laufende_maschinen", name="laufende_maschinen")
+     * @Route("/laufende_maschinen/{$Abteilung}/{$maschineId}/{$seriennummer}}", name="laufende_maschinen")
      * @Template()
      */
-    public function laufendeMaschinenAction()
+    public function laufendeMaschinenAction($Abteilung,$maschineId,$seriennummer)
     {
-        return array(
-                // ...
+         $em = $this->getDoctrine()->getManager();
+        $maschine = $em->getRepository('AppBundle:Maschine')->findAll($Abteilung);
+        $entity = laufende_maschinen();
+        $entity->setabteilung( $Abteilung );
+        $entity->setMaschine( $maschine );
+        $entity->setseriennummer( $seriennummer );
+        $em->persist($entity);
+        $em->flush();
+        return $this->redirect($this->generateUrl('laufende_maschinen')
         );
     }
 
