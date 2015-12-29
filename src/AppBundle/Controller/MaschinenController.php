@@ -13,15 +13,15 @@ use AppBundle\Entity\Maschine;
 /**
  * Maschinen nach Abteilung auflisten
  *
- * @Route("/maschinelist")
+ * @Route("/maschinen")
  */
-class MaschineListController extends Controller
+class MaschinenController extends Controller
 {
 
     /**
      * Maschinen einer Abteilung auflisten
      *
-     * @Route("/list/{abteilung}",  defaults={"abteilung" = null}, name="maschinelist_index")
+     * @Route("/list/{abteilung}",  defaults={"abteilung" = null}, name="maschinen_index")
      * @Method("GET")
      * @Template()
      */
@@ -50,7 +50,7 @@ class MaschineListController extends Controller
     /**
      * Maschine bearbeiten
      *
-     * @Route("/edit/{maschine_id}",  name="maschinelist_edit")
+     * @Route("/edit/{maschine_id}",  name="maschinen_edit")
      * @Method({"GET","POST"})
      * @Template()
      */
@@ -68,7 +68,7 @@ class MaschineListController extends Controller
 
         if ($form->isValid()) {
         	$em->flush();
-            return $this->redirect($this->generateUrl('maschinelist_index',
+            return $this->redirect($this->generateUrl('maschinen_index',
             	          array('abteilung' => $maschine->getAbteilung()->getId() )
             	          ));
 		}
@@ -81,7 +81,7 @@ class MaschineListController extends Controller
     /**
      * Maschine erstellen
      *
-     * @Route("/newmachine/{abteilung_id}",  name="maschinelist_new")
+     * @Route("/newmachine/{abteilung_id}",  name="maschinen_new")
      * @Method({"GET","POST"})
      * @Template()
      */
@@ -104,7 +104,7 @@ class MaschineListController extends Controller
         if ($form->isValid()) {
         	$em->persist($maschine);
         	$em->flush();
-            return $this->redirect($this->generateUrl('maschinelist_index',
+            return $this->redirect($this->generateUrl('maschinen_index',
             	          array('abteilung' => $maschine->getAbteilung()->getId() )
             	          ));
 		}
@@ -118,7 +118,7 @@ class MaschineListController extends Controller
     /**
      * Maschine erstellen
      *
-     * @Route("/viewmaschine/{maschine_id}",  name="maschinelist_view")
+     * @Route("/viewmaschine/{maschine_id}",  name="maschinen_view")
      * @Method({"GET"})
      * @Template()
      */
