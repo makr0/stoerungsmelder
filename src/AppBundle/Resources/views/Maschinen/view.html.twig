@@ -1,6 +1,11 @@
 {% extends '::layout.html.twig' %}
 
 {% block title -%} Maschine {% endblock %}
+{% block topbutton -%}
+        <a href="{{ path('stoerung_show',{ 'maschine_id' :maschine.abteilung.id }) }}" class="btn btn-default">offene Störungen</a>
+        <a href="{{ path('maschinen_new',{ 'abteilung_id' :maschine.abteilung.id }) }}" class="btn btn-default">abgeschlosene Störungen</a>
+        <a href="{{ path('maschinen_new',{ 'abteilung_id' :maschine.abteilung.id }) }}" class="btn btn-default">Grafik</a>
+{% endblock %}
 {% block content -%}
     <table class="table table-striped">
             <tbody>

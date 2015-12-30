@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\Form\MaschineType;
 use AppBundle\Entity\Maschine;
+use AppBundle\Entity\Stoerung;
 
 /**
  * Maschinen nach Abteilung auflisten
