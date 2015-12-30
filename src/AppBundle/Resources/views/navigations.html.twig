@@ -6,32 +6,38 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
+
             </button>
+
+            
             <a class="navbar-brand" href="{{path('index') }}"><strong>Störungsmelder Backend</strong></a>
         </div>
+         <div>
+        <a><img src="\Hawe_Inline.JPG" alt="Firmenlogo" class="img_thumbnail" width="150em" height="90em" style="margin-top: 0em; float: right; border-style: double; border-width: 0.3em";></a>
+    </div>
         <a href="{{path('aktuelle_stoerungen') }}"
            class="btn btn-default navbar-btn">aktuelle Störungen</a>
         <a class="btn btn-default navbar-btn" href="{{ path('index') }}">
             Startseite
         </a>
-
+       
     </div>
+     
+    <div class="navbar-default sidebar" role="navigation">,
 
-    <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
+           
             <ul class="nav" id="side-menu">
 	            <li>
 	    			<a href="{{ path("abteilung") }} ">Abteilungen</a>
 	            </li>
-	            <li>
-	    			<a href="{{ path("maschine") }} ">Maschinen</a>
-	            </li>
-	            <li>
-					<a href="{{ path("stoerung") }} ">Störungen</a>
-	            </li>
-               
+                <li>
+                    <a href="{{ path("maschinen_index") }} ">Maschinen</a>
+                </li>
             </ul>
-            <img src="\Hawe_Inline.JPG" alt="Firmenlogo" class="img-thumbnail" width="250em" height="150em" top="100em" left="50em";>
+            
         </div>
-    </div>
+  
+    
+      </div>
 </nav>

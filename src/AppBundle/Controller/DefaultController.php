@@ -126,7 +126,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/laufende_maschinen/{$Abteilung}/{$maschineId}/{$seriennummer}}", name="laufende_maschinen")
+     * @Route("/laufende_maschinen/{$Abteilung}/{$maschineId}/{$seriennummer}", name="laufende_maschinen")
      * @Template()
      */
     public function laufendeMaschinenAction($Abteilung,$maschineId,$seriennummer)
