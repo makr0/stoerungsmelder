@@ -139,29 +139,28 @@ class MaschinenController extends Controller
   /**
      * Maschinen Details anzeigen
      *
-     * @Route("/viewdetails/{maschine_id}",  name="maschinen_details")
+     * @Route("/viewdetails/{maschine_id}/{behobenstatus}",  name="maschinen_details")
      * @Method({"GET"})
      * @Template()
      */
-    public function viewDetailsAction($maschine_id,$massnahmen)
+    public function viewDetailsAction($maschine_id,$behobenstatus)
     {
         $em = $this->getDoctrine()->getManager();
         $maschine = $em->getRepository('AppBundle:Maschine')->find($maschine_id);
-
-         $em = $this->getDoctrine()->getManager();
-
-        $Stoerung = $em->getRepository('AppBundle:Stoerung')
-                          ->findAll();
-
         if (!$maschine) {
             throw $this->createNotFoundException('Maschine ID '.$maschine_id.' existiert nicht (mehr).');
         }
 
+        $em = $this->getDoctrine()->getManager();
+
+        $stoerungen = $em->getRepository('AppBundle:Stoerung')
+                          ->findBy(array('maschine' => $maschine,
+                                         'behoben'=> $behobenstatus));
+
+
         return array(
-            'massnahmen'=> $massnahmen,
-            'bemerkung'=> $bemerkung,
-            'Start'=> $Start,
-            'stend'=> $stend
+            'stoerungen' => $stoerungen,
+            'maschine' => $maschine
         );
-    }    
+    }
 }

@@ -2,12 +2,12 @@
 
 {% block title -%} Maschine {% endblock %}
 {% block topbutton -%}
-        <a href="#" class="btn btn-default">offene Störungen</a>
-        <a href="{{ path('maschinen_new',{ 'abteilung_id' :maschine.abteilung.id }) }}" class="btn btn-default">abgeschlossene Störungen</a>
+        <a href="{{ path('maschinen_details',{ 'maschine_id' :maschine.id, 'behobenstatus': 0 }) }}" class="btn btn-default">offene Störungen</a>
+        <a href="{{ path('maschinen_details',{ 'maschine_id' :maschine.id, 'behobenstatus': 1 }) }}" class="btn btn-default">abgeschlossene Störungen</a>
         <a href="{{ path('maschinen_new',{ 'abteilung_id' :maschine.abteilung.id }) }}" class="btn btn-default">Grafik</a>
 {% endblock %}
 {% block content -%}
-     <h3>Für die Maschine {{ maschine.name }} wurden bis jetz folgende Störungen beendet!</h3>
+     <h3>Für die Maschine {{ maschine.name }} wurden bis jetzt folgende Störungen beendet!</h3>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -19,19 +19,15 @@
             </tr>
         </thead>
         <tbody>
+        {% for stoerung in stoerungen %}
                 <tr>
-                    <td>
-                        {% if maschine.bildDateiname %}
-                            <img src="{{ vich_uploader_asset(maschine, 'bild') | imagine_filter('thumb')}}" alt="{{ maschine.name }}" />
-                        {% else %}
-                            kein bild
-                        {% endif %}
-                    </td>
-                    <td>{{ maschine.name }}</td>
-                    <td>
-                        {{ maschine.seriennummer }}
-                    </td>
+                    <td>{{ stoerung.art }}</td>
+                    <td>{% if stoerung.stStart %}{{ stoerung.stStart|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{% if stoerung.stEnd %}{{ stoerung.stEnd|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{{ stoerung.bemerkungen }}</td>
+                    <td>{{ stoerung.massnahmen }}</td>
                 </tr>
+        {% endfor %}
         </tbody>
     </table>
     <a class="btn btn-default"
