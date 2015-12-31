@@ -25,6 +25,8 @@ class AppKernel extends Kernel
             new Vich\UploaderBundle\VichUploaderBundle(),
             // Bildgrößen neu rechnen
             new Liip\ImagineBundle\LiipImagineBundle(),
+            // nutzerverwaltung
+            new FOS\UserBundle\FOSUserBundle(),
 
             // die eigentliche App
             new AppBundle\AppBundle(),
@@ -36,6 +38,7 @@ class AppKernel extends Kernel
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
             $bundles[] = new Hautelook\AliceBundle\HautelookAliceBundle();
+            $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
         }
 
         return $bundles;

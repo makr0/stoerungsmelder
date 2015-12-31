@@ -12,3 +12,21 @@ a.unlink {
 a.unlink:hover {
   color: inherit;
 }
+
+.navbar_oben{
+}
+.sidebar {
+	margin-top: 0 !important;
+}
+
+.side_header {
+}
+
+.logo {
+	width: 100%;
+	height: auto;
+}
+
+#side-menu  {
+	margin-top: 20px;
+}

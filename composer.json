@@ -8,7 +8,7 @@
     },
     "require": {
         "php": ">=5.3.9",
-        "symfony/symfony": "2.7.*",
+        "symfony/symfony": "2.8",
         "doctrine/orm": "^2.4.8",
         "doctrine/doctrine-bundle": "~1.4",
         "symfony/assetic-bundle": "~2.3",
@@ -25,11 +25,13 @@
         "hautelook/alice-bundle": "^1.1",
         "doctrine/data-fixtures": "^1.1",
         "vich/uploader-bundle": "^0.14.0",
-        "liip/imagine-bundle": "^1.4"
+        "liip/imagine-bundle": "^1.4",
+        "friendsofsymfony/user-bundle": "~2.0@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
-        "symfony/phpunit-bridge": "~2.7"
+        "symfony/phpunit-bridge": "~2.7",
+        "doctrine/doctrine-fixtures-bundle": "^2.3"
     },
     "scripts": {
         "post-install-cmd": [

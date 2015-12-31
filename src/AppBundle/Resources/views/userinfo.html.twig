@@ -1,0 +1,30 @@
+    <ul class="nav navbar-nav navbar-right">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+        <li class="last dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                        aria-expanded="false">
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                <b class="caret"></b>
+            </a>
+            <ul class="menu_level_1 dropdown-menu">
+                <li class="first last">
+                    <a href="{{ path('fos_user_profile_show') }}">{{ 'layout.profile'|trans({}, 'FOSUserBundle') }}</a>
+                </li>
+                <li>
+                    <a href="{{ path('fos_user_security_logout') }}">
+                        <i class="fa fa-power-off" title="abmelden"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        {% else %}
+        <li>
+            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+        </li>
+        <li>
+            <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+        </li>
+        {% endif %}
+    </ul>

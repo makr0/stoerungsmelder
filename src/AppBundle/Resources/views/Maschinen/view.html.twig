@@ -2,7 +2,7 @@
 
 {% block title -%} Maschine {% endblock %}
 {% block topbutton -%}
-        <a href="{{ path('stoerung_show',{ 'maschine_id' :maschine.abteilung.id }) }}" class="btn btn-default">offene Störungen</a>
+        <a href="#" class="btn btn-default">offene Störungen</a>
         <a href="{{ path('maschinen_new',{ 'abteilung_id' :maschine.abteilung.id }) }}" class="btn btn-default">abgeschlosene Störungen</a>
         <a href="{{ path('maschinen_new',{ 'abteilung_id' :maschine.abteilung.id }) }}" class="btn btn-default">Grafik</a>
 {% endblock %}
@@ -21,7 +21,11 @@
             <tr>
                 <th>Bild</th>
                 <td>
-                    <img src="{{ vich_uploader_asset(maschine, 'bild') | imagine_filter('view')}}" alt="{{ maschine.name }}" />
+                    {% if maschine.bildDateiname %}
+                        <img src="{{ vich_uploader_asset(maschine, 'bild') | imagine_filter('view')}}" alt="{{ maschine.name }}" />
+                    {% else %}
+                        kein bild
+                    {% endif %}
                 </td>
             </tr>
 

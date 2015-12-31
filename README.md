@@ -40,6 +40,8 @@ PHP nach c:\php5 installieren. Siehe [windows.php.net][3].
 
   * `php app/console doctrine:database:create`
   * `php app/console doctrine:schema:create`
+  * Admin-user hinzufügen (admin/admin)
+  * php app/console -env=dev --append doctrine:fixtures:load
 
 ### fast fertig
 

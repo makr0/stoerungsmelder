@@ -1,0 +1,16 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block title %}Mein Profil{% endblock %}
+
+{% block content %}
+<div class="row">
+    {% include "FOSUserBundle:Profile:show_content.html.twig" %}
+</div>
+<div class="row">
+<div class="col-lg-12">
+    <a class="btn btn-primary"
+       href="{{ path('fos_user_profile_edit') }}">
+        {{ 'layout.profile_edit'|trans({}, 'FOSUserBundle') }}
+    </a>
+</div>
+{% endblock %}

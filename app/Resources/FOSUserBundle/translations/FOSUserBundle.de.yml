@@ -1,0 +1,16 @@
+security:
+    login:
+        remember_me: Login speichern
+        submit: einloggen
+
+layout:
+    reset: Ich habe mein Passwort vergessen
+    profile: Profil
+    profile_edit: Profil bearbeiten
+    login: Login
+
+'ROLE_WORKER': Arbeiter
+'ROLE_REPARATUR': Reparatur
+'ROLE_TEAMLEITER': Teamleiter
+'ROLE_PRODUKTIONSLEITER': Produktionsleiter
+'ROLE_ADMIN': Administrator

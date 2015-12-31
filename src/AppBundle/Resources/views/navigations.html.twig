@@ -1,32 +1,31 @@
-<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-    <div class="container-fluid">
+<nav class="navbar navbar-default navbar-static-top " role="navigation" style="margin-bottom: 0">
+    <div class="container-fluid navbar_oben">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-
             </button>
-
-            
-            <a class="navbar-brand" href="{{path('index') }}"><strong>Störungsmelder Backend</strong></a>
         </div>
-         <div>
-        <a><img src="\Hawe_Inline.JPG" alt="Firmenlogo" class="img_thumbnail" width="150em" height="90em" style="margin-top: 0em; float: right; border-style: double; border-width: 0.3em";></a>
+        <div class="navbar-brand">Störungsmelder</div>
+        <div class="navbar-right">
+            <a href="{{path('aktuelle_stoerungen') }}"
+               class="btn btn-default navbar-btn">aktuelle Störungen</a>
+            <a class="btn btn-default navbar-btn" href="{{ path('index') }}">
+                Startseite
+            </a>
+            {% include "AppBundle::userinfo.html.twig"%}
+        </div>
     </div>
-        <a href="{{path('aktuelle_stoerungen') }}"
-           class="btn btn-default navbar-btn">aktuelle Störungen</a>
-        <a class="btn btn-default navbar-btn" href="{{ path('index') }}">
-            Startseite
-        </a>
-       
-    </div>
-     
-    <div class="navbar-default sidebar" role="navigation">,
+
+    <div class="navbar-default sidebar" role="navigation">
 
         <div class="sidebar-nav navbar-collapse">
-           
+            <div class="side_header">
+                <img class="logo" src="\Hawe_Inline.JPG" alt="Firmenlogo" width="150em" height="90em">
+            </div>
+
             <ul class="nav" id="side-menu">
 	            <li>
 	    			<a href="{{ path("abteilung") }} ">Abteilungen</a>
@@ -35,9 +34,9 @@
                     <a href="{{ path("maschinen_index") }} ">Maschinen</a>
                 </li>
             </ul>
-            
+
         </div>
-  
-    
-      </div>
+
+
+    </div>
 </nav>
