@@ -136,5 +136,32 @@ class MaschinenController extends Controller
             'maschine'=> $maschine
         );
     }
+  /**
+     * Maschinen Details anzeigen
+     *
+     * @Route("/viewdetails/{maschine_id}",  name="maschinen_details")
+     * @Method({"GET"})
+     * @Template()
+     */
+    public function viewDetailsAction($maschine_id,$massnahmen)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $maschine = $em->getRepository('AppBundle:Maschine')->find($maschine_id);
 
+         $em = $this->getDoctrine()->getManager();
+
+        $Stoerung = $em->getRepository('AppBundle:Stoerung')
+                          ->findAll();
+
+        if (!$maschine) {
+            throw $this->createNotFoundException('Maschine ID '.$maschine_id.' existiert nicht (mehr).');
+        }
+
+        return array(
+            'massnahmen'=> $massnahmen,
+            'bemerkung'=> $bemerkung,
+            'Start'=> $Start,
+            'stend'=> $stend
+        );
+    }    
 }

@@ -1,0 +1,42 @@
+{% extends '::layout.html.twig' %}
+
+{% block title -%} Maschine {% endblock %}
+{% block topbutton -%}
+        <a href="#" class="btn btn-default">offene Störungen</a>
+        <a href="{{ path('maschinen_new',{ 'abteilung_id' :maschine.abteilung.id }) }}" class="btn btn-default">abgeschlossene Störungen</a>
+        <a href="{{ path('maschinen_new',{ 'abteilung_id' :maschine.abteilung.id }) }}" class="btn btn-default">Grafik</a>
+{% endblock %}
+{% block content -%}
+     <h3>Für die Maschine {{ maschine.name }} wurden bis jetz folgende Störungen beendet!</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Art der Störung</th>
+                <th>Beginn der Störung</th>
+                <th>Ende der Störung</th>
+                <th>Bemerkungen</th>
+                <th>Maßnahmen</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>
+                        {% if maschine.bildDateiname %}
+                            <img src="{{ vich_uploader_asset(maschine, 'bild') | imagine_filter('thumb')}}" alt="{{ maschine.name }}" />
+                        {% else %}
+                            kein bild
+                        {% endif %}
+                    </td>
+                    <td>{{ maschine.name }}</td>
+                    <td>
+                        {{ maschine.seriennummer }}
+                    </td>
+                </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-default"
+       href="{{ path('maschinen_index',{'abteilung':maschine.abteilung.id}) }}">
+        Zurück zur Liste
+    </a>
+</div>
+{% endblock %}
