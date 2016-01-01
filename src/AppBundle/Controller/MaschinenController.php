@@ -160,7 +160,8 @@ class MaschinenController extends Controller
 
         return array(
             'stoerungen' => $stoerungen,
-            'maschine' => $maschine
+            'maschine' => $maschine,
+            'behoben' => $behobenstatus
         );
     }
 }
