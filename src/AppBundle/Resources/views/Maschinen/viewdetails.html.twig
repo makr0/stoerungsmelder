@@ -2,8 +2,8 @@
 
 {% block title -%} Maschine {% endblock %}
 {% block topbutton -%}
-        <a href="{{ path('maschinen_details',{ 'maschine_id' :maschine.id, 'behobenstatus': 0 }) }}" class="btn btn-default">offene Störungen</a>
-        <a href="{{ path('maschinen_details',{ 'maschine_id' :maschine.id, 'behobenstatus': 1 }) }}" class="btn btn-default">abgeschlossene Störungen</a>
+        <a href="{{ path('maschinen_details',{ 'maschine_id' :maschine.id, 'behobenstatus': 0 }) }}" class="btn btn-default {% if behoben == 0 %}active{% endif %}">offene Störungen</a>
+        <a href="{{ path('maschinen_details',{ 'maschine_id' :maschine.id, 'behobenstatus': 1 }) }}" class="btn btn-default {% if behoben == 1 %}active{% endif %}">abgeschlossene Störungen</a>
         <a href="{{ path('maschinen_new',{ 'abteilung_id' :maschine.abteilung.id }) }}" class="btn btn-default">Grafik</a>
 {% endblock %}
 {% block content -%}
