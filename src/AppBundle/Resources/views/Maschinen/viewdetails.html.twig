@@ -13,7 +13,26 @@
         <h3>Für die Maschine {{ maschine.name }} wurden bis jetzt folgende Störungen beendet!</h3>
     {% endif %}
     <table class="table table-striped">
+        {%if behoben == 0 %}
         <thead>
+            <tr>
+                <th>Art der Störung</th>
+                <th>Beginn der Störung</th>
+                <th>Bemerkungen</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for stoerung in stoerungen %}
+                <tr>
+                    <td>{{ stoerung.art }}</td>
+                    <td>{% if stoerung.stStart %}{{ stoerung.stStart|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{{ stoerung.bemerkungen }}</td>
+                </tr>
+        {% endfor %}
+
+        </tbody>
+        {% else %}
+         <thead>
             <tr>
                 <th>Art der Störung</th>
                 <th>Beginn der Störung</th>
@@ -32,8 +51,7 @@
                     <td>{{ stoerung.massnahmen }}</td>
                 </tr>
         {% endfor %}
-
-        </tbody>
+        {% endif %}
     </table>
     <a class="btn btn-default"
        href="{{ path('maschinen_index',{'abteilung':maschine.abteilung.id}) }}">
