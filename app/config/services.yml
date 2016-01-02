@@ -4,3 +4,11 @@ parameters:
 #    parameter_name: value
 
 services:
+    app.feature_voter:
+        class: AppBundle\Security\FeatureVoter
+        arguments:
+            - @file_locator
+            - @security.access.decision_manager
+        tags:
+            - { name: security.voter }
+        public: false

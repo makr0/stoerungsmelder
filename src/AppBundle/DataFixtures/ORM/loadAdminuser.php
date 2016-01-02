@@ -6,7 +6,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 
-class LoadUserData implements FixtureInterface, ContainerAwareInterface
+class LoadAdminUserData implements FixtureInterface, ContainerAwareInterface
 {
 	/**
      * @var ContainerInterface
@@ -25,6 +25,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $user->setUsername('admin');
         $user->setPlainPassword('admin');
         $user->setEmail('admin@example.com');
+        $user->setRoles(array('ROLE_ADMIN'));
         $user->setEnabled(true);
 		$userManager->updateUser($user);
     }

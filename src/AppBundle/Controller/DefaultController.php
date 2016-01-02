@@ -20,7 +20,7 @@ use AppBundle\Form\StoerungType;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/aktuell", name="aktuelle_stoerungen")
+     * @Route("/stoerungen/aktuell", name="aktuelle_stoerungen")
      * @Template()
      */
     public function aktuellAction()
@@ -39,11 +39,12 @@ class DefaultController extends Controller
         );
     }
     /**
-     * @Route("/beenden/{id}", name="stoerung_beenden")
+     * @Route("/stoerung/beenden/{id}", name="stoerung_beenden")
      * @Template()
      */
     public function stoerungBeendenAction($id)
     {
+        $this->denyAccessUnlessGranted('stoerung_beenden');
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('AppBundle:Stoerung')->find($id);
         $entity->setStEnd( new \DateTime() );
@@ -60,12 +61,13 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/beenden/{id}/save", name="stoerung_beenden_save")
+     * @Route("/stoerung/beenden/{id}/save", name="stoerung_beenden_save")
      * @Method("POST")
      * @Template()
      */
     public function stoerungBeendenSaveAction(Request $request,$id)
     {
+        $this->denyAccessUnlessGranted('stoerung_beenden');
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('AppBundle:Stoerung')->find($id);
 
@@ -86,12 +88,12 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/neu", name="stoerung_neu")
+     * @Route("/stoerung/neu", name="stoerung_neu")
      * @Template()
      */
     public function stoerungNeuAction()
     {
-
+        $this->denyAccessUnlessGranted('stoerung_melden');
         $em = $this->getDoctrine()->getManager();
         $abteilungen = $em->getRepository('AppBundle:Abteilung')
                           ->findAll();
@@ -102,7 +104,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/neu/{maschineId}/{art}", name="stoerung_neu_save")
+     * @Route("/stoerung/neu/{maschineId}/{art}", name="stoerung_neu_save")
      * @Method("POST")
      * @Template()
      */
