@@ -11,10 +11,13 @@ ROLE_TEAMLEITER:
     - report_lesen
 
 ROLE_PRODUKTIONSLEITER:
-    - user_anlegen
+    - benutzer_verwalten
     - report_lesen
 
 # Admin hat immer zugriff auf alle Features
 # egal was hier steht (siehe Security/FeatureVoter.php)
 ROLE_ADMIN:
-    - irgendwas
+    - stoerung_melden
+    - stoerung_beenden
+    - report_lesen
+    - benutzer_verwalten

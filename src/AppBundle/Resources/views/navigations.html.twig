@@ -33,6 +33,11 @@
                 <li>
                     <a href="{{ path("maschinen_index") }} ">Maschinen</a>
                 </li>
+                {% if is_granted('benutzer_verwalten') %}
+                    <li>
+                        <a href="{{ path("admin_index") }} ">Admin</a>
+                    </li>
+                {% endif %}
             </ul>
 
         </div>

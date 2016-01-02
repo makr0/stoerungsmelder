@@ -1,36 +1,25 @@
 <?php
 namespace AppBundle\Security;
 
-use AppBundle\Entity\Post;
 use AppBundle\Entity\User;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 use Symfony\Component\Security\Core\Authorization\AccessDecisionManagerInterface;
 use Symfony\Component\Yaml\Parser;
 use Symfony\Component\HttpKernel\Config\FileLocator;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class FeatureVoter extends Voter
 {
-    // ...
-
     private $decisionManager;
-    private $featureaccess;
+    private $featuresACL;
 
-    public function __construct(FileLocator $fileLocator, AccessDecisionManagerInterface $decisionManager)
+    public function __construct(FeatureAccess $featureAccess, AccessDecisionManagerInterface $decisionManager)
     {
         // den decisionManager brauchen wir um dem Admin vollzugriff zu geben
-        $this->decisionManager = $decisionManager;
-
-        // in diesem configfile steht welche Usergruppe zugriff auf welche features hat.
-        $configfile = $fileLocator->locate('@AppBundle/Resources/featureaccess.yml');
-        $yaml = new Parser();
-        $this->featureaccess = $yaml->parse(file_get_contents($configfile) );
-        // welche Features existieren in dem configfile?
-        $this->supported_features = array();
-        foreach ($this->featureaccess as $role => $features) {
-            $this->supported_features = array_merge($this->supported_features,$features);
-        }
-        $this->supported_features = array_unique($this->supported_features);
+        $this->decisionManager   = $decisionManager;
+        $this->featuresACL       = $featureAccess->getACL();
+        $this->supported_features= $featureAccess->getFeatures();
     }
 
     protected function supports($attribute, $subject)
@@ -52,21 +41,27 @@ class FeatureVoter extends Voter
             return true;
         }
 
-
-        dump($attribute);
-        dump($this->featureaccess);
-
         // ist für eine der Rollen des Users ein feature konfiguriert?
         foreach ($token->getRoles() as $role) {
             $rolename = $role->getRole();
-            if( isset($this->featureaccess[$rolename])) {
-                if( in_array($attribute, $this->featureaccess[$rolename]) ) {
+            if( isset($this->featuresACL[$rolename])) {
+                if( in_array($attribute, $this->featuresACL[$rolename]) ) {
                     return true;
                 }
             }
         }
-
         return false;
-
     }
+
+    public function features_for_user($user) {
+        $token = new UsernamePasswordToken($user->getUsername(), null, 'main', $user->getRoles());
+        $token->setUser($user);
+
+        $ret=array();
+        foreach ($this->supported_features as $attribute) {
+            $ret[$attribute] = $this->voteOnAttribute($attribute,null,$token);
+        }
+        return $ret;
+    }
+
 }

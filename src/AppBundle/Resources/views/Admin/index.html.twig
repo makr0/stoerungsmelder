@@ -1,0 +1,25 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Benutzerverwaltung{% endblock %}
+{% block topbutton -%}
+        <a href="{{ path('admin_user_add') }}" class="btn btn-default">neuer Nutzer</a>
+{% endblock %}
+
+{% block content %}
+	<table class="table table-striped">
+		<tr>
+			<th>Username</th>
+			<th>Aktion</th>
+		</tr>
+		{% for user in users %}
+			<tr>
+				<td>{{user.username}}</td>
+
+				<td>
+					<a href="{{ path('admin_user_edit',{'id':user.id}) }}" class="btn btn-default">bearbeiten</a>
+				</td>
+			</tr>
+
+		{% endfor %}
+	</table>
+{% endblock %}

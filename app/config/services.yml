@@ -7,8 +7,14 @@ services:
     app.feature_voter:
         class: AppBundle\Security\FeatureVoter
         arguments:
-            - @file_locator
+            - @app.feature_access
             - @security.access.decision_manager
         tags:
             - { name: security.voter }
-        public: false
+        public: true
+
+    app.feature_access:
+        class: AppBundle\Security\FeatureAccess
+        arguments:
+            - @file_locator
+        public: true
