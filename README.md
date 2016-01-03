@@ -53,6 +53,16 @@ PHP nach c:\php5 installieren. Siehe [windows.php.net][3].
 
   * http://stoerungsmelder.localhost im browser aufrufen
 
+### Default User
+Folgende User werden durch die Fixtures erstellt:
+
+  * Administrator (admin:admin)
+  * Arbeiter (worker:worker)
+  * Reparatur (reparatur:reparatur)
+  * Teamleiter (teamleiter:teamleiter)
+  * Produktionsleiter (produktionsleiter:produktionsleiter)
+
+Die Zugriffsrechte auf die verschiedenen Funktionen werden in  src/AppBundle/Resources/featureaccess.yml festgelegt.
 
 
 [1]:  https://symfony.com/doc/2.7/book/

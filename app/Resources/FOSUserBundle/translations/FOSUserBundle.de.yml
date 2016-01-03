@@ -14,3 +14,4 @@ layout:
 'ROLE_TEAMLEITER': Teamleiter
 'ROLE_PRODUKTIONSLEITER': Produktionsleiter
 'ROLE_ADMIN': Administrator
+'ROLE_USER': Systembenutzer

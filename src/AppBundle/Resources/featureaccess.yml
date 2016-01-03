@@ -1,0 +1,23 @@
+ROLE_WORKER:
+    - stoerung_melden
+
+ROLE_REPARATUR:
+    - stoerung_melden
+    - stoerung_beenden
+    - report_lesen
+
+ROLE_TEAMLEITER:
+    - stoerung_beenden
+    - report_lesen
+
+ROLE_PRODUKTIONSLEITER:
+    - benutzer_verwalten
+    - report_lesen
+
+# Admin hat immer zugriff auf alle Features
+# egal was hier steht (siehe Security/FeatureVoter.php)
+ROLE_ADMIN:
+    - stoerung_melden
+    - stoerung_beenden
+    - report_lesen
+    - benutzer_verwalten
