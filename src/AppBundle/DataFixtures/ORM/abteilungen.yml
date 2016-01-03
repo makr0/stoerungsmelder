@@ -1,5 +1,5 @@
 AppBundle\Entity\Abteilung:
-    abteilung{1..5}:
+    abteilung{1..9}:
         name (unique): <abteilungsname()>
 
 AppBundle\Entity\Maschine:

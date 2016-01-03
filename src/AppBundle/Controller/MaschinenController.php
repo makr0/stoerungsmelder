@@ -157,13 +157,14 @@ class MaschinenController extends Controller
 
         $stoerungen = $em->getRepository('AppBundle:Stoerung')
                           ->findBy(array('maschine' => $maschine,
-                                         'behoben'=> $behobenstatus));
+                                         'behoben'=> $behobenstatus),
+                                   array('stStart'=>'DESC'));
 
 
         return array(
             'stoerungen' => $stoerungen,
             'maschine' => $maschine,
-            'behoben' => $behobenstatus
-        );
+            'behoben' => $behobenstatus,
+             );
     }
 }
