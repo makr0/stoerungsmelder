@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use AppBundle\Form\MaschineType;
 use AppBundle\Entity\Maschine;
 use AppBundle\Entity\Stoerung;
+use knp
 
 /**
  * Maschinen nach Abteilung auflisten
@@ -147,6 +148,7 @@ class MaschinenController extends Controller
      */
     public function viewDetailsAction($maschine_id,$behobenstatus)
     {
+    	$request = $this -> getrequest();
         $em = $this->getDoctrine()->getManager();
         $maschine = $em->getRepository('AppBundle:Maschine')->find($maschine_id);
         if (!$maschine) {
@@ -160,6 +162,10 @@ class MaschinenController extends Controller
                                          'behoben'=> $behobenstatus),
                                    array('stStart'=>'DESC'));
 
+        $entities = $this -> get('knp_paginator')->paginate(
+        $stoerungen,
+        $request -> query->get('page',1)/*page number*/,
+        5/*limit per page */);
 
         return array(
             'stoerungen' => $stoerungen,
