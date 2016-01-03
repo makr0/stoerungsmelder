@@ -11,7 +11,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use AppBundle\Form\MaschineType;
 use AppBundle\Entity\Maschine;
 use AppBundle\Entity\Stoerung;
-use knp
 
 /**
  * Maschinen nach Abteilung auflisten
