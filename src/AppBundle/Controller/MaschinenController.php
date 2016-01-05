@@ -145,7 +145,7 @@ class MaschinenController extends Controller
      * @Method({"GET"})
      * @Template()
      */
-    public function viewDetailsAction($maschine_id,$behobenstatus)
+    public function viewDetailsAction(Request $request,$maschine_id,$behobenstatus)
     {
     	$request = $this -> getrequest();
         $em = $this->getDoctrine()->getManager();
@@ -155,7 +155,6 @@ class MaschinenController extends Controller
         }
 
         $em = $this->getDoctrine()->getManager();
-
         $stoerungen = $em->getRepository('AppBundle:Stoerung')
                           ->findBy(array('maschine' => $maschine,
                                          'behoben'=> $behobenstatus),
@@ -166,10 +165,11 @@ class MaschinenController extends Controller
         $request -> query->get('page',1)/*page number*/,
         5/*limit per page */);
 
+
         return array(
             'stoerungen' => $stoerungen,
             'maschine' => $maschine,
             'behoben' => $behobenstatus,
-             );
+            );
     }
 }
