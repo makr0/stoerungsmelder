@@ -52,25 +52,5 @@
         </tbody>
 	</table>
 	{% endif %}
-    {% if stoerungen_behoben %}
-        <h2>behobene Störungen</h2>
-    <table class="table-striped table">
-        <thead>
-            <tr>
-                <th>von-bis</th>
-                <th>Abteilung/Maschine</th>
-                <th>Massnahmen</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for stoerung in stoerungen_behoben %}
-            <tr>
-                <td>{{ stoerung.stStart|date("d.m. H:i")}} - {{ stoerung.stEnd|date("d.m. H:i")}}</td>
-                <td>{{ stoerung.maschine.abteilung }}/{{ stoerung.maschine }}</td>
-                <td>{{ stoerung.massnahmen }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    {% endif %}
+    
 {% endblock %}

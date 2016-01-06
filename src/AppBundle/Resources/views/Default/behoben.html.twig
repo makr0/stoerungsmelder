@@ -1,0 +1,33 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+	behobene Störungen
+{% endblock %}
+
+{% block content %}
+    {% if is_granted('stoerung_melden') %}
+        <a class="btn btn-danger" href="{{ path('stoerung_neu') }}">
+            neue Störung
+        </a>
+    {% endif %}
+    {% if stoerungen_behoben %}
+    <table class="table-striped table">
+        <thead>
+            <tr>
+                <th>von-bis</th>
+                <th>Abteilung/Maschine</th>
+                <th>Massnahmen</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for stoerung in stoerungen_behoben %}
+            <tr>
+                <td>{{ stoerung.stStart|date("d.m. H:i")}} - {{ stoerung.stEnd|date("d.m. H:i")}}</td>
+                <td>{{ stoerung.maschine.abteilung }}/{{ stoerung.maschine }}</td>
+                <td>{{ stoerung.massnahmen }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+{% endblock %}

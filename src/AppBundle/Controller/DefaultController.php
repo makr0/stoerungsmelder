@@ -30,11 +30,23 @@ class DefaultController extends Controller
         $aktuell = $em->getRepository('AppBundle:Stoerung')
                        ->findBy(array('behoben'=>false));
 
+        return array(
+            'stoerungen_aktuell'=>$aktuell,
+           
+        );
+    }
+    /**
+     * @Route("/stoerungen/behoben", name="behobene_stoerungen")
+     * @Template()
+     */
+    public function behobenAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
         $behoben = $em->getRepository('AppBundle:Stoerung')
                        ->findBy(array('behoben'=>true));
 
         return array(
-            'stoerungen_aktuell'=>$aktuell,
             'stoerungen_behoben'=>$behoben,
         );
     }

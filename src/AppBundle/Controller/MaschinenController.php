@@ -163,7 +163,7 @@ class MaschinenController extends Controller
         $paginator = $this -> get('knp_paginator');
         $stoerungen = $paginator->paginate( $result,
                                             $request -> query->get('page',1) , /*page number*/
-                                            5);                                /*limit per page */
+                                            10);                                /*limit per page */
 
         return array(
             'stoerungen' => $stoerungen,

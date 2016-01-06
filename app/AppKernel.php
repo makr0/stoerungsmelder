@@ -28,7 +28,7 @@ class AppKernel extends Kernel
             // nutzerverwaltung
             new FOS\UserBundle\FOSUserBundle(),
             // Seiteneinstellungen ??
-             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
 
             // die eigentliche App
             new AppBundle\AppBundle(),
