@@ -18,7 +18,10 @@ class FeatureVoter extends Voter
     {
         // den decisionManager brauchen wir um dem Admin vollzugriff zu geben
         $this->decisionManager   = $decisionManager;
+        // alle Rollen mit zugeordneten Features
         $this->featuresACL       = $featureAccess->getACL();
+        // alle Features die in featureaccess genannt werden
+        // wird verwendet um zu entscheiden ob dieser Voter für eine Entscheidung zuständig ist
         $this->supported_features= $featureAccess->getFeatures();
     }
 
@@ -27,6 +30,7 @@ class FeatureVoter extends Voter
         return in_array($attribute, $this->supported_features);
     }
 
+    // bestimmt ob für den aktuellen User ein Feature erlaubt ist
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
         // User muss eingeloggt sein
@@ -53,6 +57,7 @@ class FeatureVoter extends Voter
         return false;
     }
 
+    // diese funktion gibt für einen beliebigen User alle erlaubten Features zurück
     public function features_for_user($user) {
         $token = new UsernamePasswordToken($user->getUsername(), null, 'main', $user->getRoles());
         $token->setUser($user);
