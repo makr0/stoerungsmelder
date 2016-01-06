@@ -155,16 +155,15 @@ class MaschinenController extends Controller
         }
 
         $em = $this->getDoctrine()->getManager();
-        $stoerungen = $em->getRepository('AppBundle:Stoerung')
+        $result = $em->getRepository('AppBundle:Stoerung')
                           ->findBy(array('maschine' => $maschine,
                                          'behoben'=> $behobenstatus),
                                    array('stStart'=>'DESC'));
 
-        $entities = $this -> get('knp_paginator')->paginate(
-        $stoerungen,
-        $request -> query->get('page',1)/*page number*/,
-        5/*limit per page */);
-
+        $paginator = $this -> get('knp_paginator');
+        $stoerungen = $paginator->paginate( $result,
+                                            $request -> query->get('page',1) , /*page number*/
+                                            5);                                /*limit per page */
 
         return array(
             'stoerungen' => $stoerungen,
