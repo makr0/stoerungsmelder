@@ -145,8 +145,9 @@ class MaschinenController extends Controller
      * @Method({"GET"})
      * @Template()
      */
-    public function viewDetailsAction($maschine_id,$behobenstatus)
+    public function viewDetailsAction(Request $request,$maschine_id,$behobenstatus)
     {
+    	$request = $this -> getrequest();
         $em = $this->getDoctrine()->getManager();
         $maschine = $em->getRepository('AppBundle:Maschine')->find($maschine_id);
         if (!$maschine) {
@@ -154,16 +155,21 @@ class MaschinenController extends Controller
         }
 
         $em = $this->getDoctrine()->getManager();
-
         $stoerungen = $em->getRepository('AppBundle:Stoerung')
                           ->findBy(array('maschine' => $maschine,
-                                         'behoben'=> $behobenstatus));
+                                         'behoben'=> $behobenstatus),
+                                   array('stStart'=>'DESC'));
+
+        $entities = $this -> get('knp_paginator')->paginate(
+        $stoerungen,
+        $request -> query->get('page',1)/*page number*/,
+        5/*limit per page */);
 
 
         return array(
             'stoerungen' => $stoerungen,
             'maschine' => $maschine,
-            'behoben' => $behobenstatus
-        );
+            'behoben' => $behobenstatus,
+            );
     }
 }

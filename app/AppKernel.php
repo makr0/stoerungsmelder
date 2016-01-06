@@ -27,6 +27,8 @@ class AppKernel extends Kernel
             new Liip\ImagineBundle\LiipImagineBundle(),
             // nutzerverwaltung
             new FOS\UserBundle\FOSUserBundle(),
+            // Seiteneinstellungen ??
+             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
 
             // die eigentliche App
             new AppBundle\AppBundle(),
