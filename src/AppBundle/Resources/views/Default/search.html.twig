@@ -1,0 +1,22 @@
+{% extends '::layout.html.twig' %}
+
+{% block title -%} Suchmaske {% endblock %}
+
+{% block content %}
+	<table> class="table-striped table"</table>
+		<thead>
+			<tr>
+				<th>Abteilung</th>
+				<th>Maschinen</th>
+				<th>Fehlermeldungen</th>
+				<th>Maßnahmen</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>{{ abteilungen.abteilung }}</tr>
+			<tr>{{ stoerung.maschine.abteilung}}/{{ stoerung.maschine }}</tr>
+			<tr>{{ stoerung.bemerkungen }}</tr>
+			<tr>{{ stoerung.massnahmen }}</tr>
+		</tbody>
+	</table>
+{% endblock %}

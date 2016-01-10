@@ -17,9 +17,14 @@
             <a class="btn btn-default navbar-btn" href="{{ path('index') }}">
                 Startseite
             </a>
-            {% include "AppBundle::userinfo.html.twig"%}
-        </div>
-    </div>
+             {% include "AppBundle::userinfo.html.twig"%}
+         </div>
+     </div>     
+    
+            
+           
+       
+   
 
     <div class="navbar-default sidebar" role="navigation">
 
@@ -40,6 +45,10 @@
                         <a href="{{ path("admin_index") }} ">Admin</a>
                     </li>
                 {% endif %}
+                <form>
+            <input type="search" />
+            <input type="submit" value="Suchen">
+            </form>
             </ul>
 
         </div>

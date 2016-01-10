@@ -177,4 +177,45 @@ class DefaultController extends Controller
         );
     }
 
+    /**
+     * @Route("/search", defaults={"abteilung" = null} ,name="Suche")
+     * @Template()
+     */
+    public function searchAction($abteilung)
+    {
+       $em = $this->getDoctrine()->getManager();
+
+        $abteilungen = $em->getRepository('AppBundle:Abteilung')
+                          ->findAll();
+
+        if( $abteilung !== null ) {
+            $maschinen = $em->getRepository('AppBundle:Maschine')
+                            ->findBy(
+                                array('abteilung' => $abteilung,
+                                      'stoerungen' => $stoerungen)
+                            );
+        } else {
+            $maschinen = array();
+        }
+
+        if( $maschine !== null ) {
+            $stoerungen = $em->getRepository('AppBundle:Stoerung')
+                            ->findBy(array( 'maschine' => $maschine,
+                                            'massnahmen' => $massnahmen,
+                                            'bemerkungen' => $bemerkungen
+
+                                            ));
+        }else {
+            $maschinen = array();
+        }
+       
+
+       
+
+        return array(
+            'abteilungen'=> $abteilungen,
+            'maschinen' => $maschinen,
+            
+        );
+    }
 }
