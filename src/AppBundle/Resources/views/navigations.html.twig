@@ -19,13 +19,7 @@
             </a>
              {% include "AppBundle::userinfo.html.twig"%}
          </div>
-     </div>     
-    
-            
-           
-       
-   
-
+     </div>
     <div class="navbar-default sidebar" role="navigation">
 
         <div class="sidebar-nav navbar-collapse">
@@ -45,8 +39,8 @@
                         <a href="{{ path("admin_index") }} ">Admin</a>
                     </li>
                 {% endif %}
-                <form>
-            <input type="search" />
+                <form action="./search.html.twig" method="get">
+            <input type="text" name="suche" />
             <input type="submit" value="Suchen">
             </form>
             </ul>
