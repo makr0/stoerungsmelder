@@ -178,8 +178,38 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/search", defaults={"abteilung" = null} ,name="Suche")
+     * @Route("/search",name="Suche")
      * @Method("GET")
      * @Template()
      */
-    public function searchAction($abteilung)
+    public function searchAction()
+    {
+    	
+    $k = $_GET('k');
+
+    $terms =explode(" ", $k);
+    $query = "select * from search where ";
+
+foreach ($terms as $each) {
+		$i++;
+
+		if ($i == 1)
+			$query.= "keywords like '%$search%'";
+		else
+			$query.= "or keywords like '%$search%'";
+	}
+		$query=mysql_query($query);
+		$numrows=mysql_num_rows($query);
+
+		if ($numrows > 0) {
+			while ($row = mysql_fetch_assoc($query)) {
+				$abteilung = $row['abteilung'];
+				$maschine = $row['maschine'];
+				$stoerungen = $row['stoerungen'];
+				$bemerkungen = $row['bemerkungen'];
+				echo "<h2>$abteilung</h2>";
+		}} else {
+			echo "<h2>Es wurden keine Ergebnisse für \"<b>$k</b>\"</h2>";
+		}
+	}
+}
