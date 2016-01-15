@@ -20,21 +20,25 @@ use AppBundle\Form\StoerungType;
 class DefaultController extends Controller
 {
 
+
     /**
-     * @Route("/laufende_maschinen/{$Abteilung}/{$maschineId}/{$seriennummer}", name="laufende_maschinen")
+     * @Route("/laufende/maschinen", name="laufende_maschinen")
+     * @Method("POST")
      * @Template()
      */
-    public function laufendeMaschinenAction($Abteilung,$maschineId,$seriennummer)
+    public function laufendeMaschinenAction()
     {
-         $em = $this->getDoctrine()->getManager();
-        $maschine = $em->getRepository('AppBundle:Maschine')->findAll($Abteilung);
-        $entity = laufende_maschinen();
-        $entity->setabteilung( $Abteilung );
-        $entity->setMaschine( $maschine );
-        $entity->setseriennummer( $seriennummer );
-        $em->persist($entity);
-        $em->flush();
-        return $this->redirect($this->generateUrl('laufende_maschinen')
+       $em = $this->getDoctrine()->getManager();
+
+       $alle =$em->getRepository('AppBundle:Abteilung')
+       					->findAll();
+
+        $laufen = $em->getRepository('AppBundle:Stoerung')
+                       ->findBy(array('behoben'=>true));
+
+        return array(
+        	'Abteilung'=>$Abteilung,
+            'ohne_stoerung'=>$laufen,
         );
     }
 
