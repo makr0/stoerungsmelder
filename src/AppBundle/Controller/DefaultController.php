@@ -178,7 +178,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/search",name="Suche")
+     * @Route("/search",name="Search")
      * @Method("GET")
      * @Template()
      */
