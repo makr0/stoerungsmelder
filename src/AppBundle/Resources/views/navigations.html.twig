@@ -26,7 +26,6 @@
             <div class="side_header">
                 <img class="logo" src="/InLine_Logo.png" alt="Firmenlogo" width="150em" height="90em">
             </div>
-
             <ul class="nav" id="side-menu">
 	            <li>
 	    			<a href="{{ path("abteilung") }} ">Abteilungen</a>
@@ -39,10 +38,10 @@
                         <a href="{{ path("admin_index") }} ">Admin</a>
                     </li>
                 {% endif %}
-                <form action="./search.html.twig" method="GET">
-            <input type="text" name="suche" />
-            <input type="submit" value="Suchen">
-            </form>
+                <form action="./search.html.twig" method="POST">
+                <input type="text" name="suche" />
+                <input type="submit" value="Suchen">
+                </form>
             </ul>
 
         </div>

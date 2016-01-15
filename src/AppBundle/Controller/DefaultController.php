@@ -41,10 +41,17 @@ class DefaultController extends Controller
      */
     public function behobenAction()
     {
+    	$request = $this -> getrequest();
         $em = $this->getDoctrine()->getManager();
 
-        $behoben = $em->getRepository('AppBundle:Stoerung')
-                       ->findBy(array('behoben'=>true));
+        $behobenen = $em->getRepository('AppBundle:Stoerung')
+                       ->findBy(array('behoben'=>true),
+                       		   array('stStart'=>'DESC'));
+
+         $paginator = $this -> get('knp_paginator');
+        $behoben = $paginator->paginate( $behobenen,
+                                            $request -> query->get('page',1) , /*page number*/
+                                            15);                                /*limit per page */
 
         return array(
             'stoerungen_behoben'=>$behoben,
@@ -140,20 +147,23 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/laufende_maschinen/{$Abteilung}/{$maschineId}/{$seriennummer}", name="laufende_maschinen")
+     * @Route("/laufende/maschinen", name="laufende_maschinen")
+     * @Method("POST")
      * @Template()
      */
-    public function laufendeMaschinenAction($Abteilung,$maschineId,$seriennummer)
+    public function laufendeMaschinenAction()
     {
-         $em = $this->getDoctrine()->getManager();
-        $maschine = $em->getRepository('AppBundle:Maschine')->findAll($Abteilung);
-        $entity = laufende_maschinen();
-        $entity->setabteilung( $Abteilung );
-        $entity->setMaschine( $maschine );
-        $entity->setseriennummer( $seriennummer );
-        $em->persist($entity);
-        $em->flush();
-        return $this->redirect($this->generateUrl('laufende_maschinen')
+       $em = $this->getDoctrine()->getManager();
+
+       $alle =$em->getRepository('AppBundle:Abteilung')
+       					->findAll();
+
+        $laufen = $em->getRepository('AppBundle:Stoerung')
+                       ->findBy(array('behoben'=>true));
+
+        return array(
+        	'Abteilung'=>$Abteilung,
+            'ohne_stoerung'=>$laufen,
         );
     }
 
@@ -179,37 +189,12 @@ class DefaultController extends Controller
 
     /**
      * @Route("/search",name="Search")
-     * @Method("GET")
+     * Method"POST"
      * @Template()
      */
     public function searchAction()
     {
-    	
-    $k = $_GET('k');
+    
 
-    $terms =explode(" ", $k);
-    $query = "select * from search where ";
-
-foreach ($terms as $each) {
-		$i++;
-
-		if ($i == 1)
-			$query.= "keywords like '%$search%'";
-		else
-			$query.= "or keywords like '%$search%'";
-	}
-		$query=mysql_query($query);
-		$numrows=mysql_num_rows($query);
-
-		if ($numrows > 0) {
-			while ($row = mysql_fetch_assoc($query)) {
-				$abteilung = $row['abteilung'];
-				$maschine = $row['maschine'];
-				$stoerungen = $row['stoerungen'];
-				$bemerkungen = $row['bemerkungen'];
-				echo "<h2>$abteilung</h2>";
-		}} else {
-			echo "<h2>Es wurden keine Ergebnisse für \"<b>$k</b>\"</h2>";
-		}
 	}
 }
