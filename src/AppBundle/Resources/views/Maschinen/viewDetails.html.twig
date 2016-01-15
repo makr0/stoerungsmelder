@@ -18,7 +18,9 @@
             <tr>
                 <th>Art der Störung</th>
                 <th>Beginn der Störung</th>
+                <th>Fehlercode</th>
                 <th>Bemerkungen</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -33,7 +35,13 @@
                     {% endif %}
                     </td>
                     <td>{% if stoerung.stStart %}{{ stoerung.stStart|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{{ stoerung.fehlercode }}</td>
                     <td>{{ stoerung.bemerkungen }}</td>
+                    <td>
+                        <a class="btn btn-default" href="{{path('stoerung_show', { 'id': stoerung.id } ) }}">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                    </td>
                 </tr>
         {% endfor %}
 
@@ -44,7 +52,7 @@
                 <th>Art der Störung</th>
                 <th>Beginn der Störung</th>
                 <th>Ende der Störung</th>
-                <th>Fehlercode</th>th
+                <th>Fehlercode</th>
                 <th>Bemerkungen</th>
                 <th>Maßnahmen</th>
                 <th></th>

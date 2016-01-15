@@ -41,13 +41,16 @@ class StoerungController extends Controller
      */
     public function behobenAction()
     {
+        $request = $this -> getrequest();
         $em = $this->getDoctrine()->getManager();
 
         $behoben = $em->getRepository('AppBundle:Stoerung')
-                       ->findBy(array('behoben'=>true));
+                       ->findBy(array('behoben'=>true),
+                                array('stStart'=>'DESC'));
+        $paginator = $this -> get('knp_paginator');
 
         return array(
-            'stoerungen_behoben'=>$behoben,
+            'stoerungen_behoben'=>$paginator->paginate( $behoben, $request -> query->get('page',1), 15)
         );
     }
     /**

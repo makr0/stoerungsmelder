@@ -45,6 +45,9 @@
                     {% if is_granted('stoerung_beenden') %}
 	                   <a class="btn btn-default"  href="{{ path('stoerung_beenden', { 'id': stoerung.id }) }}">beenden</a>
                     {% endif %}
+                    <a class="btn btn-default" href="{{path('stoerung_show', { 'id': stoerung.id } ) }}">
+                        <i class="fa fa-eye"></i>
+                    </a>
 
                 </td>
 			</tr>
@@ -52,5 +55,5 @@
         </tbody>
 	</table>
 	{% endif %}
-    
+
 {% endblock %}

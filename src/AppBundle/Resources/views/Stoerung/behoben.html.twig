@@ -17,6 +17,7 @@
                 <th>von-bis</th>
                 <th>Abteilung/Maschine</th>
                 <th>Massnahmen</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +26,11 @@
                 <td>{{ stoerung.stStart|date("d.m. H:i")}} - {{ stoerung.stEnd|date("d.m. H:i")}}</td>
                 <td>{{ stoerung.maschine.abteilung }}/{{ stoerung.maschine }}</td>
                 <td>{{ stoerung.massnahmen }}</td>
+                <td>
+                    <a class="btn btn-default" href="{{path('stoerung_show', { 'id': stoerung.id } ) }}">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
