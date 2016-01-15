@@ -14,12 +14,11 @@ angular.module('selectMachineApp',[])
 .controller('selectCtrl',function($scope,$interpolate){
 	$scope.abteilungen = {{ abteilungen  | serialize('json') | raw }};
 	var pathTpl = '{{ path('stoerung_neu_save', { 'maschineId': "|maschine.id|",'art':"|art|" } )  }}';
-	console.log( pathTpl );
 	var makelink = $interpolate(pathTpl);
 	$scope.submitform = function(art) {
 		var form = angular.element('#dieForm');
 		form.attr('action', makelink({maschine:$scope.maschine,art:art}) );
-		console.log(form);
+		console.log($scope);
 		form.submit();
 	}
 })
@@ -56,6 +55,13 @@ angular.module('selectMachineApp',[])
     		          placeholder="Hier kommen die Bemerkungen rein!!" cols="60" rows="4">
 	    	</textarea>
 	   	</div>
+	    <div class="col-xs-6">
+    		<h2>Fehlercode</h2>
+    		<p>Wenn ein Fehlercode ausgegeben wurde, bitte hier rein</p>
+    		<input type="text" class="form-control" ng-model="$parent.fehlercode">
+	   	</div>
+    </div>
+    <div class="row" ng-if="maschine">
     	<div class="col-xs-6">
     		<h2>Art</h2>
 	    	<a ng-click="submitform('S')" class="btn btn-primary">
@@ -67,7 +73,8 @@ angular.module('selectMachineApp',[])
         </div>
     </div>
 	<form id="dieForm" method="post" style="display:none;">
-		<textarea class="form-control" ng-model="bemerkungen" name="bemerkungen"></textarea>
+		<textarea          ng-model="bemerkungen" name="bemerkungen"></textarea>
+		<input type="text" ng-model="fehlercode"  name="fehlercode">
 		<input type="submit">
 	</form>
   </div>

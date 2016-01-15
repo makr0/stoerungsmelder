@@ -13,7 +13,7 @@
             <a href="{{path('aktuelle_stoerungen') }}"
                class="btn btn-default navbar-btn">aktuelle Störungen</a>
             <a href="{{path('behobene_stoerungen') }}"
-               class="btn btn-default navbar-btn">behobene Störungen</a>   
+               class="btn btn-default navbar-btn">behobene Störungen</a>
             <a class="btn btn-default navbar-btn" href="{{ path('index') }}">
                 Startseite
             </a>
@@ -34,15 +34,14 @@
                 <li>
                     <a href="{{ path("maschinen_index") }} ">Maschinen</a>
                 </li>
+                <li>
+                    <a href="{{ path("suche_form") }} ">Suche</a>
+                </li>
                 {% if is_granted('benutzer_verwalten') %}
                     <li>
                         <a href="{{ path("admin_index") }} ">Admin</a>
                     </li>
                 {% endif %}
-                <form action="./search.html.twig" method="GET">
-            <input type="text" name="suche" />
-            <input type="submit" value="Suchen">
-            </form>
             </ul>
 
         </div>

@@ -1,0 +1,40 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Suchergebnis{% endblock %}
+
+{% block content %}
+    {% if not ergebnisse %}
+    	<h2>kein Ergebnis</h2>
+    	<p>für Fehlercode {{ fehlercode }}</p>
+    	<p><a class="btn btn-default" href="{{path('suche_form')}}">neue Suche</a></p>
+
+    {% endif %}
+    {% if ergebnisse %}
+    	<p>für Fehlercode {{ fehlercode }} <a class="btn btn-default" href="{{path('suche_form')}}">neue Suche</a></p>
+    <table class="table-striped table">
+        <thead>
+            <tr>
+                <th>von-bis</th>
+                <th>Abteilung/Maschine</th>
+                <th>Massnahmen</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for stoerung in ergebnisse %}
+            <tr>
+                <td>{{ stoerung.stStart|date("d.m. H:i")}} - {{ stoerung.stEnd|date("d.m. H:i")}}</td>
+                <td>{{ stoerung.maschine.abteilung }}/{{ stoerung.maschine }}</td>
+                <td>{{ stoerung.massnahmen }}</td>
+                <td>
+                    <a class="btn btn-default" href="{{path('stoerung_show', { 'id': stoerung.id } ) }}">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+{% endblock %}

@@ -52,13 +52,20 @@ class Stoerung
     /**
      * @var string
      *
+     * @ORM\Column(name="fehlercode", type="string", length=20, nullable=true)
+     */
+    private $fehlercode;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="bemerkungen", type="text")
      */
     private $bemerkungen;
 
     /**
      * @var string
-     * 
+     *
      *
      * @ORM\Column(name="massnahmen", type="text", nullable=true)
      */
@@ -250,5 +257,29 @@ class Stoerung
     public function getBehoben()
     {
         return $this->behoben;
+    }
+
+    /**
+     * Set fehlercode
+     *
+     * @param string $fehlercode
+     *
+     * @return Stoerung
+     */
+    public function setFehlercode($fehlercode)
+    {
+        $this->fehlercode = $fehlercode;
+
+        return $this;
+    }
+
+    /**
+     * Get fehlercode
+     *
+     * @return string
+     */
+    public function getFehlercode()
+    {
+        return $this->fehlercode;
     }
 }

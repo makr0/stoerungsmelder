@@ -21,6 +21,10 @@
                 <td>{{ entity.stend|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
+                <th>Fehlercode</th>
+                <td>{{ entity.fehlercode }}</td>
+            </tr>
+            <tr>
                 <th>Behoben</th>
                 <td>{{ entity.behoben }}</td>
             </tr>
@@ -41,12 +45,8 @@
     </table>
 
         <div class="btn-group" role="group">
-    <a class="btn btn-default" href="{{ path('stoerung') }}">
-        Zurück zur Liste
+    <a class="btn btn-default" href="{{ path('maschinen_view',{'maschine_id':entity.maschine.id}) }}">
+        Zurück zur Maschine
     </a>
-        <a class="btn btn-default" href="{{ path('stoerung_edit', { 'id': entity.id }) }}">
-            Bearbeiten
-        </a>
-    {{ form(delete_form) }}
 </div>
 {% endblock %}

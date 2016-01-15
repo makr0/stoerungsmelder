@@ -1,0 +1,23 @@
+{% extends '::layout.html.twig' %}
+
+{% block title %}Suche{% endblock %}
+
+{% block content %}
+<form action="{{ path('suche_ergebnis') }}" method="post">
+	<div class="row">
+		<div class="col-xs-6">
+			<label>Fehlercode</label>
+		</div>
+		<div class="col-xs-6">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6">
+			<input  class="form-control" type="text" name="fehlercode">
+		</div>
+		<div class="col-xs-6">
+			<input class="btn btn-primary" type="submit" value="nach Fehlercode suchen">
+		</div>
+	</div>
+</form>
+{% endblock %}

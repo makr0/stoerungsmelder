@@ -16,6 +16,7 @@ class StoerungType extends AbstractType
     {
         $builder
             ->add('bemerkungen')
+            ->add('fehlercode')
         ;
     }
 
