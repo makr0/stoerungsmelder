@@ -29,15 +29,20 @@ class DefaultController extends Controller
     {
        $em = $this->getDoctrine()->getManager();
 
-       $Abteilung =$em->getRepository('AppBundle:Abteilung')
-       					->findAll();
-
         $laufen = $em->getRepository('AppBundle:Stoerung')
                        ->findBy(array('behoben'=>true));
 
+       $Abteilung =$em->getRepository('AppBundle:Abteilung')
+       					->findAll();
+
+       $maschinen = $em->getRepository('AppBundle:Maschine')
+       					->findAll();
+
+
         return array(
-        	'Abteilung'=>$Abteilung,
-            'ohne_stoerung'=>$laufen,
+        	'maschinen' => $maschinen,
+        	'Abteilung' => $Abteilung,
+          'laufen' => $laufen,
         );
     }
 

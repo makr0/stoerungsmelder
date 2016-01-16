@@ -5,21 +5,35 @@
 {% block content %}
 
 
-{% for Abteilung in Abteilungen %}
+{% for Abteilungen in Abteilung %}
 
-<h1>$Abteilung</h1>
+<h3 'Abteilungen': Abteilungen.id >{{Abteilungen.name}}</h3>
 
-		<ul>
-    		{% for maschine in maschines %}
-        	<li>{{ maschine.name|e }}</li>
-        	<li>{{ maschine.seriennummer|e }}</li>
+	<table class="table-striped table">
+		<thead>
+			<tr>
+				<th class="field-label col-xs-1">Bild</th>
+				<th class="field-label col-xs-2">Maschine</th>
+				<th class="field-label col-xs-2">Seriennummer</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for maschine in maschinen %}
+		<tr>
+			<td>
+                {% if maschine.bildDateiname %}
+                <img src="{{ vich_uploader_asset(maschine, 'bild') | imagine_filter('thumb')}}" alt="{{ maschine.name }}" />
+                {% else %}
+                 kein bild
+                 {% endif %}
+            </td>
+        	<td>{{ maschine.name }}</td>
+        	<td>{{ maschine.seriennummer|e }}</td>
     		{% else %}
-        	<li><em>Es wurde keine Maschine gefunden</em></li>
+        	<td><em>Es wurde keine Maschine gefunden</em></td>
+        	</tr>
     		{% endfor %}
-		</ul>
-
+		</tbody>
+	</table>
 {% endfor %}
-	
- 
-
 {% endblock %}
