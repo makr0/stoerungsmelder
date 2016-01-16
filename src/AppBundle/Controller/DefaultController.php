@@ -23,14 +23,13 @@ class DefaultController extends Controller
 
     /**
      * @Route("/laufende/maschinen", name="laufende_maschinen")
-     * @Method("POST")
      * @Template()
      */
     public function laufendeMaschinenAction()
     {
        $em = $this->getDoctrine()->getManager();
 
-       $alle =$em->getRepository('AppBundle:Abteilung')
+       $Abteilung =$em->getRepository('AppBundle:Abteilung')
        					->findAll();
 
         $laufen = $em->getRepository('AppBundle:Stoerung')

@@ -6,15 +6,11 @@
         <tbody>
             <tr>
                 <td class="field-label col-xs-2 active">
-                    <label>Id</label>
+                    <label>Störungsbeginn</label>
                 </td>
                 <td class="col-md-10">
-                    {{ entity.id }}
+                   {{ entity.stStart|date('Y-m-d H:i:s') }}
                 </td>
-            </tr>
-            <tr>
-                <th>Störungsbeginn</th>
-                <td>{{ entity.stStart|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
                 <th>Störungsende</th>
@@ -38,7 +34,14 @@
             </tr>
             <tr>
                 <th>Art</th>
-                <td>{{ entity.art }}</td>
+                <td>
+                        {% if entity.art == 'S' %}
+                        {{ label_warning('Störung') }}
+                    {% endif %}
+                    {% if entity.art == 'A' %}
+                        {{ label_danger('Ausfall') }}
+                    {% endif %}
+                    </td>
              </tr>
             </tr>
         </tbody>
