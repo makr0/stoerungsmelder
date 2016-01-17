@@ -5,9 +5,10 @@
 {% block content %}
 
 
-{% for Abteilungen in Abteilung %}
+{% for abteilungen in abteilung %}
 
-<h3 'Abteilungen': Abteilungen.id >{{Abteilungen.name}}</h3>
+<h3 'abteilungen': abteilungen.id >{{abteilungen.name}}</h3>
+{% if stoerungen_behoben %}
 
 	<table class="table-striped table">
 		<thead>
@@ -18,22 +19,22 @@
 			</tr>
 		</thead>
 		<tbody>
-		{% for maschine in maschinen %}
+		{% for stoerung in stoerungen_behoben %}
 		<tr>
 			<td>
-                {% if maschine.bildDateiname %}
-                <img src="{{ vich_uploader_asset(maschine, 'bild') | imagine_filter('thumb')}}" alt="{{ maschine.name }}" />
-                {% else %}
-                 kein bild
-                 {% endif %}
-            </td>
-        	<td>{{ maschine.name }}</td>
-        	<td>{{ maschine.seriennummer|e }}</td>
-    		{% else %}
-        	<td><em>Es wurde keine Maschine gefunden</em></td>
+                        {% if stoerung.maschine.bildDateiname %}
+                            <img src="{{ vich_uploader_asset(maschine, 'bild') | imagine_filter('thumb')}}" alt="{{ maschine.name }}" />
+                        {% else %}
+                            kein bild
+                        {% endif %}
+                    </td>
+                    <td>{{ stoerung.maschine.abteilung }}</td>
+			<td>{{ stoerung.maschine.name }}</td>
+			<td>{{ stoerung.maschine.seriennummer }}</td>
         	</tr>
     		{% endfor %}
 		</tbody>
 	</table>
+{% endif %}
 {% endfor %}
 {% endblock %}

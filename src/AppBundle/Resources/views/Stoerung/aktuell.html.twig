@@ -31,10 +31,10 @@
 			<tr>
                 <td>
                     {% if stoerung.art == 'S' %}
-                        {{ label_warning('störung') }}
+                        {{ label_warning('Störung') }}
                     {% endif %}
                     {% if stoerung.art == 'A' %}
-                        {{ label_danger('ausfall') }}
+                        {{ label_danger('Ausfall') }}
                     {% endif %}
                 </td>
                 <td>{{ stoerung.stStart|date("d.m. H:i")}}</td>
