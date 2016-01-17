@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use AppBundle\Form\MaschineType;
 use AppBundle\Entity\Maschine;
 use AppBundle\Entity\Stoerung;
+use Ob\HighchartsBundle\Highcharts\Highchart;
 
 /**
  * Maschinen nach Abteilung auflisten
@@ -170,5 +171,16 @@ class MaschinenController extends Controller
             'maschine' => $maschine,
             'behoben' => $behobenstatus,
             );
+    }
+    /**
+     * Maschinen Auslastung anzeigen
+     *
+     * @Route("/grafik/{maschine_id}",  name="maschinen_grafik")
+     * @Method({"GET"})
+     * @Template()
+     */
+    public function grafikAction(Request $request,$maschine_id)
+    {
+   
     }
 }

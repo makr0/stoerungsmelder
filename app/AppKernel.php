@@ -29,7 +29,6 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             // Seiteneinstellungen ??
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
-
             // die eigentliche App
             new AppBundle\AppBundle(),
         );
