@@ -34,3 +34,13 @@ a.unlink:hover {
 	margin-top: 10px;
 	margin-left:1050px;
 }
+.hinweis {
+	background: red;
+	border-style: solid;
+	border-radius: 6px;
+	text-align: center;
+	padding: 50px;
+	margin-top: 50px;
+
+
+}
