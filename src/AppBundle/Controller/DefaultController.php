@@ -27,23 +27,19 @@ class DefaultController extends Controller
      */
     public function laufendeMaschinenAction()
     {
-       $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
+        $ergebnis = array();
+        $abteilungen = $em->getRepository('AppBundle:Abteilung')
+                          ->findBy(array(), array('name' => 'asc'));
 
-        $laufen = $em->getRepository('AppBundle:Stoerung')
-                       ->findBy(array('behoben'=>false));
-
-       $abteilung =$em->getRepository('AppBundle:Abteilung')
-       					->findBy(array(), array('name' => 'asc'));
-
-        $maschinen = $em->getRepository('AppBundle:Maschine')
-                          ->findBy(
-                  array('abteilung' => $abteilung)
-                  );
-
+        foreach ($abteilungen as $abteilung ) {
+            $laufen_in_abteilung = $em->getRepository('AppBundle:Stoerung')
+                                      ->maschinen_ok_in_abteilung( $abteilung );
+            $ergebnis[]=array('abteilung'=>$abteilung,
+                              'maschinen'=>$laufen_in_abteilung);
+        }
         return array(
-        	'maschinen' => $maschinen,
-        	'abteilung' => $abteilung,
-          'stoerungen_behoben' => $laufen,
+          'ergebnis' => $ergebnis,
         );
     }
 

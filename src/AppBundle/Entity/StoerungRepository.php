@@ -33,4 +33,29 @@ class StoerungRepository extends \Doctrine\ORM\EntityRepository
             )
             ->getSingleScalarResult();
     }
+    public function maschinen_ok()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT m FROM AppBundle:Maschine m
+                 WHERE NOT EXISTS (
+                    SELECT s FROM AppBundle:Stoerung s WHERE s.maschine = m and s.behoben = 0
+                 )
+                '
+            )
+            ->getResult();
+    }
+    public function maschinen_ok_in_abteilung(Abteilung $abteilung)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT m FROM AppBundle:Maschine m
+                 WHERE NOT EXISTS (
+                    SELECT s FROM AppBundle:Stoerung s WHERE s.maschine = m and s.behoben = 0
+                 ) AND m.abteilung = :abteilung
+                '
+            )
+            ->setParameter('abteilung',$abteilung)
+            ->getResult();
+    }
 }
